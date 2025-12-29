@@ -1,0 +1,82 @@
+name: skeleton
+description: "A new Flutter project."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  pretty_dio_logger: ^1.4.0
+  dio: ^5.9.0
+  retrofit: ^4.7.2
+  chucker_flutter: ^1.8.5
+  flutter_map: ^8.2.1
+  permission_handler: ^12.0.1
+  geolocator: ^14.0.2
+  device_info_plus: ^11.5.0
+  get_it: ^8.2.0
+  camera: ^0.11.2
+  shared_preferences: ^2.5.3
+  curl_generator: ^1.0.2
+  google_api_availability: ^5.0.1
+  universal_platform: ^1.1.0
+  universal_html: ^2.2.4
+  persian_datetime_picker: 3.1.1
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  build_runner: ^2.4.9
+  retrofit_generator: ^9.1.9
+  injectable_generator: ^2.7.0
+
+# The following section is specific to Flutter packages.
+flutter:
+  uses-material-design: true
+
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/roboto.woff2
+    - family: IRANSansX
+      fonts:
+        - asset: assets/fonts/iransansx/IRANSansXFaNum-Black.ttf
+          weight: 900
+        - asset: assets/fonts/iransansx/IRANSansXFaNum-ExtraBlack.ttf
+          weight: 800
+        - asset: assets/fonts/iransansx/IRANSansXFaNum-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/iransansx/IRANSansXFaNum-Bold.ttf
+          weight: 600
+        - asset: assets/fonts/iransansx/IRANSansXFaNum-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/iransansx/IRANSansXFaNum-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/iransansx/IRANSansXFaNum-Light.ttf
+          weight: 300
+        - asset: assets/fonts/iransansx/IRANSansXFaNum-UltraLight.ttf
+          weight: 200
+        - asset: assets/fonts/iransansx/IRANSansXFaNum-Thin.ttf
+          weight: 100
+  # To add assets to your application, add an assets section, like this:
+  # assets:
+  #   - images/a_dot_burr.jpeg
+  #   - images/a_dot_ham.jpeg
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/to/resolution-aware-images
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/to/asset-from-package
+
+flutter_intl:
+  enabled: true

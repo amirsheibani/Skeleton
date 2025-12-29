@@ -1,0 +1,34 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:skeleton/app.dart';
+import 'package:skeleton/bootstrap.dart';
+import 'package:skeleton/core/env/environment.dart';
+
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  environment = StageEnvironment(
+    baseUrl: '',
+
+    apiVersion: 'v1',
+    mapToken: 'pk.eyJ1IjoiZHJlYWRlbHVzIiwiYSI6ImNrbzB4cXN0MjBrOTUybnA0bnltZTdtc2gifQ.wPSD6ScnaBT1sm9ii5bYFw',
+    appId: 'HAMRAH_BANK_SHAHR',
+    showRuntimeLog: true,
+    showChucker: true,
+    showPrettyLog: true,
+  );
+
+  await appConfiguration();
+
+  runApp(
+    const Banner(
+      message: 'Stage',
+      location: BannerLocation.bottomStart,
+      layoutDirection: TextDirection.ltr,
+      textDirection: TextDirection.ltr,
+      textStyle: TextStyle(color: Color(0xFFFFFFFF)),
+      color: Color(0xFFFF5151),
+      child: App(),
+    ),
+  );
+}

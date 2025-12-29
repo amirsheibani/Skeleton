@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:skeleton/core/common/extension/network_exceptions.dart';
-import 'package:skeleton/core/handler/base_response.dart';
-import 'package:skeleton/core/handler/result.dart';
+import 'package:skeleton/core/handler/base/base_response.dart';
+import 'package:skeleton/core/handler/base/result.dart';
 
 
 extension ErrorApiResultExtension on Object {

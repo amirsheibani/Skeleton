@@ -38,7 +38,6 @@ class _AppState extends ConsumerState<App> {
   @override
   Widget build(BuildContext context) {
     final themeState = ref.watch(themeProvider);
-
     final ThemeData theme = switch (themeState.type) {
       ThemeType.light => ThemeData.light(),
       ThemeType.dark => ThemeData.dark(),

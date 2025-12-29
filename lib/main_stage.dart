@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skeleton/app/app.dart';
 import 'package:skeleton/bootstrap.dart';
 import 'package:skeleton/core/env/environment.dart';
@@ -28,7 +29,7 @@ Future main() async {
       textDirection: TextDirection.ltr,
       textStyle: TextStyle(color: Color(0xFFFFFFFF)),
       color: Color(0xFFFF5151),
-      child: App(),
+      child: ProviderScope(child: App()),
     ),
   );
 }

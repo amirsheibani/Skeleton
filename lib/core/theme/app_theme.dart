@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:skeleton/generated/l10n.dart';
 
-enum ThemeType { dark, light }
+enum ThemeType { light, dark, system }
 
 extension OnThemeType on ThemeType{
   get humanReadable{
@@ -11,12 +11,14 @@ extension OnThemeType on ThemeType{
         return S.current.dark;
       case ThemeType.light:
         return S.current.light;
+      case ThemeType.system:
+        return S.current.light;
     }
   }
 }
 
-class HPlusColor extends MaterialColor {
-  const HPlusColor(super.primary, super.swatch);
+class PalletColor extends MaterialColor {
+  const PalletColor(super.primary, super.swatch);
 
   /// The lightest shade.
   Color get shade99 => this[99]!;
@@ -55,9 +57,9 @@ class HPlusColor extends MaterialColor {
   Color get shade0 => this[0]!;
 }
 
-extension AppTheme on ThemeData {
-  HPlusColor get primary => brightness == Brightness.light
-      ? const HPlusColor(0xFFD51224, <int, Color>{
+extension OnAppTheme on ThemeData {
+  PalletColor get primary => brightness == Brightness.light
+      ? const PalletColor(0xFFD51224, <int, Color>{
           100: Color(0xFFFFFFFF),
           99: Color(0xFFFCEFF0),
           95: Color(0xFFF8DADD),
@@ -72,7 +74,7 @@ extension AppTheme on ThemeData {
           10: Color(0xFF300408),
           0: Color(0xFF000000),
         })
-      : const HPlusColor(0xFFD51224, <int, Color>{
+      : const PalletColor(0xFFD51224, <int, Color>{
           100: Color(0xFF000000),
           99: Color(0xFF300408),
           95: Color(0xFF51060D),
@@ -88,8 +90,8 @@ extension AppTheme on ThemeData {
           0: Color(0xFFFFFFFF),
         });
 
-  HPlusColor get secondary => brightness == Brightness.light
-      ? const HPlusColor(0xFF009CDF, <int, Color>{
+  PalletColor get secondary => brightness == Brightness.light
+      ? const PalletColor(0xFF009CDF, <int, Color>{
           100: Color(0xFFFFFFFF),
           99: Color(0xFFEAF7FC),
           95: Color(0xFFD5EFFA),
@@ -104,7 +106,7 @@ extension AppTheme on ThemeData {
           10: Color(0xFF051117),
           0: Color(0xFF000000),
         })
-      : const HPlusColor(0xFF009CDF, <int, Color>{
+      : const PalletColor(0xFF009CDF, <int, Color>{
           100: Color(0xFF000000),
           99: Color(0xFF051117),
           95: Color(0xFF09232E),
@@ -120,8 +122,8 @@ extension AppTheme on ThemeData {
           0: Color(0xFFFFFFFF),
         });
 
-  HPlusColor get text => brightness == Brightness.light
-      ? const HPlusColor(0xFF929295, <int, Color>{
+  PalletColor get text => brightness == Brightness.light
+      ? const PalletColor(0xFF929295, <int, Color>{
           100: Color(0xFFFFFFFF),
           99: Color(0xFFF4F4F4),
           95: Color(0xFFEAEAEA),
@@ -136,7 +138,7 @@ extension AppTheme on ThemeData {
           10: Color(0xFF27262C),
           0: Color(0xFF000000),
         })
-      : const HPlusColor(0xFF929295, <int, Color>{
+      : const PalletColor(0xFF929295, <int, Color>{
           100: Color(0xFF000000),
           99: Color(0xFF27262C),
           95: Color(0xFF3D3C41),
@@ -152,8 +154,8 @@ extension AppTheme on ThemeData {
           0: Color(0xFFFFFFFF),
         });
 
-  HPlusColor get sunriseYellow => brightness == Brightness.light
-      ? const HPlusColor(0xFFffc53d, <int, Color>{
+  PalletColor get sunriseYellow => brightness == Brightness.light
+      ? const PalletColor(0xFFffc53d, <int, Color>{
     100:Color(0xFFfffbe6),
     90: Color(0xFFfff1b8),
     80: Color(0xFFffe58f),
@@ -165,7 +167,7 @@ extension AppTheme on ThemeData {
     20: Color(0xFF874d00),
     10: Color(0xFF613400),
   })
-      : const HPlusColor(0xFFfaad14, <int, Color>{
+      : const PalletColor(0xFFfaad14, <int, Color>{
     100: Color(0xFF613400),
     90: Color(0xFF874d00),
     80: Color(0xFFad6800),
@@ -178,8 +180,8 @@ extension AppTheme on ThemeData {
     10: Color(0xFFfffbe6),
   });
 
-  HPlusColor get green => brightness == Brightness.light
-      ? const HPlusColor(0xFF73d13d, <int, Color>{
+  PalletColor get green => brightness == Brightness.light
+      ? const PalletColor(0xFF73d13d, <int, Color>{
     100:Color(0xFFf6ffed),
     90: Color(0xFFd9f7be),
     80: Color(0xFFb7eb8f),
@@ -191,7 +193,7 @@ extension AppTheme on ThemeData {
     20: Color(0xFF135200),
     10: Color(0xFF092b00),
   })
-      : const HPlusColor(0xFF52c41a, <int, Color>{
+      : const PalletColor(0xFF52c41a, <int, Color>{
     100: Color(0xFF092b00),
     90: Color(0xFF135200),
     80: Color(0xFF237804),
@@ -204,8 +206,8 @@ extension AppTheme on ThemeData {
     10: Color(0xFFf6ffed),
   });
 
-  HPlusColor get base => brightness == Brightness.light
-      ? const HPlusColor(0xFF525256, <int, Color>{
+  PalletColor get base => brightness == Brightness.light
+      ? const PalletColor(0xFF525256, <int, Color>{
     100:Color(0xFFFFFFFF),
     99: Color(0xFFFAFAFA),
     95: Color(0xFFF1F1F1),
@@ -214,7 +216,7 @@ extension AppTheme on ThemeData {
     10: Color(0xFF27262C),
     0: Color(0xFF000000),
   })
-      : const HPlusColor(0xFFD51224, <int, Color>{
+      : const PalletColor(0xFFD51224, <int, Color>{
     100: Color(0xFF000000),
     99: Color(0xFF27262C),
     95: Color(0xFF3D3C41),

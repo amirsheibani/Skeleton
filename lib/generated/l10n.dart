@@ -74,6 +74,11 @@ class S {
     return Intl.message('Light', name: 'light', desc: '', args: []);
   }
 
+  /// `System`
+  String get system {
+    return Intl.message('System', name: 'system', desc: '', args: []);
+  }
+
   /// `Percentage`
   String get percentage {
     return Intl.message('Percentage', name: 'percentage', desc: '', args: []);

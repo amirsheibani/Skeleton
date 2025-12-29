@@ -63,6 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "service_unavailable": MessageLookupByLibrary.simpleMessage(
       "Service is Unavailable",
     ),
+    "system": MessageLookupByLibrary.simpleMessage("System"),
     "unable_to_process_the_data": m1,
     "unauthorised_request": MessageLookupByLibrary.simpleMessage(
       "This request demand Authorization",

@@ -4,6 +4,7 @@
   "english": "English",
   "dark": "Dark",
   "light": "Light",
+  "system": "System",
   "percentage": "Percentage",
   "not_implemented": "Not Implemented",
   "request_cancelled": "Cancelled Request",

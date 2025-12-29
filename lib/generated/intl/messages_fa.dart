@@ -65,6 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "service_unavailable": MessageLookupByLibrary.simpleMessage(
       "سرویس در دسترس نمیباشد",
     ),
+    "system": MessageLookupByLibrary.simpleMessage("سیستم"),
     "unable_to_process_the_data": m1,
     "unauthorised_request": MessageLookupByLibrary.simpleMessage(
       "این درخواست نیاز به اعتبار سنجی دارد",

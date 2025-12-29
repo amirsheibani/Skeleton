@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:skeleton/app.dart';
+import 'package:skeleton/app/app.dart';
 import 'package:skeleton/bootstrap.dart';
 import 'package:skeleton/core/env/environment.dart';
 

@@ -7,6 +7,10 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Placeholder(color: Theme.of(context).secondary,);
+    return Placeholder(
+      child: Center(
+        child: Text('ProfilePage', style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Theme.of(context).secondary)),
+      ),
+    );
   }
 }

@@ -1,51 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:skeleton/app/router.dart';
 import 'package:skeleton/core/theme/app_theme.dart';
-import 'package:skeleton/core/theme/theme_manager/theme_provider.dart';
-import 'package:skeleton/generated/l10n.dart';
+import 'package:skeleton/features/splash/presentation/manager/splash_provider.dart';
 
-class SplashPage extends ConsumerWidget {
+class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Placeholder(
-      child: Center(
-        child: Text('SplashPage', style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Theme.of(context).primary)),
-      ),
-    );
+  Widget build(BuildContext context) {
 
-    Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        children: [
-          Expanded(flex: 3, child: Placeholder()),
-          Expanded(
-            child: ElevatedButton(
-              onPressed: () {
-                ref.read(themeProvider.notifier).setDark();
-              },
-              child: Text(S.of(context).dark),
-            ),
-          ),
-          Expanded(
-            child: ElevatedButton(
-              onPressed: () {
-                ref.read(themeProvider.notifier).setLight();
-              },
-              child: Text(S.of(context).light),
-            ),
-          ),
-          Expanded(
-            child: ElevatedButton(
-              onPressed: () {
-                ref.read(themeProvider.notifier).setSystem();
-              },
-              child: Text(S.of(context).system),
-            ),
-          ),
-        ],
-      ),
+    return Consumer(
+      builder: (context, ref, child) {
+        ref.listenManual(
+            splashProvider,
+                (pre, next) {
+          next.whenOrNull(
+            data: (value) {
+              context.go(AppRouterPath.gpsInfo.path);
+            },
+          );
+        },
+        fireImmediately: true);
+        return ref
+                .watch(splashProvider)
+                .whenOrNull(
+                  loading: () {
+                    return Placeholder(child: Center(child: CircularProgressIndicator()));
+                  },
+                ) ??
+            Placeholder(
+              child: Center(
+                child: Text('SplashPage', style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Theme.of(context).primary)),
+              ),
+            );
+      },
     );
   }
 }

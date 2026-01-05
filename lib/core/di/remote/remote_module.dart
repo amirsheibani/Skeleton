@@ -24,7 +24,6 @@ abstract class RemoteModule {
   @singleton
   Dio get dio => _getDio();
 
-
   _getDio() {
     var dio = Dio(BaseOptions(baseUrl: environment.url!));
 

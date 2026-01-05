@@ -7,6 +7,10 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Placeholder(color: Theme.of(context).primary);
+    return Placeholder(
+      child: Center(
+        child: Text('RegisterPage', style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Theme.of(context).primary)),
+      ),
+    );
   }
 }

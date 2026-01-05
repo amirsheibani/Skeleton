@@ -33,6 +33,10 @@ dependencies:
   persian_datetime_picker: 3.1.1
   connectivity_plus: ^6.0.3
   internet_connection_checker: ^1.0.0+1
+  nfc_manager: ^4.1.1
+  nfc_manager_ndef: ^1.1.0
+  ndef_record: ^1.4.0
+  app_links: ^7.0.0
 
 dev_dependencies:
   flutter_test:

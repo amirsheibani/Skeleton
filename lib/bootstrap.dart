@@ -6,7 +6,6 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:skeleton/core/di/base/di_setup.dart';
 import 'package:skeleton/core/di/local/device_info.dart';
 import 'package:skeleton/core/env/environment.dart';
-import 'package:skeleton/core/handler/service/internet_service_handler.dart';
 
 late Environment environment;
 const platformChannel = MethodChannel('top.amirdeveloper.plugins');
@@ -36,15 +35,18 @@ Future<void> appConfiguration() async {
 
   await requestNotificationPermission();
 
-  InternetMonitor internetMonitor = InternetMonitor();
-  internetMonitor.start();
-  internetMonitor.statusStream.listen((data){
-    if(data != InternetStatus.connected){
-      print('internet failed');
-    }else{
-      print('internet ok');
-    }
-  });
+
+
+
+  // InternetMonitor internetMonitor = InternetMonitor();
+  // internetMonitor.start();
+  // internetMonitor.statusStream.listen((data){
+  //   if(data != InternetStatus.connected){
+  //     print('internet failed');
+  //   }else{
+  //     print('internet ok');
+  //   }
+  // });
 }
 
 

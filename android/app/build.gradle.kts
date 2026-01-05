@@ -30,11 +30,50 @@ android {
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        create("release") {
+//            keyAlias = keystoreProdProperties["keyAlias"] as String
+//            keyPassword = keystoreProdProperties["keyPassword"] as String
+//            storeFile = file(keystoreProdProperties["storeFile"] as String)
+//            storePassword = keystoreProdProperties["storePassword"] as String
+            storeFile = file("${System.getProperty("user.home")}/.android/debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
+        getByName("debug") {
+//            keyAlias = keystoreProdProperties["keyAlias"] as String
+//            keyPassword = keystoreProdProperties["keyPassword"] as String
+//            storeFile = file(keystoreProdProperties["storeFile"] as String)
+//            storePassword = keystoreProdProperties["storePassword"] as String
+
+            storeFile = file("${System.getProperty("user.home")}/.android/debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
+    }
+
+
     buildTypes {
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
+        getByName("release") {
+            signingConfig = signingConfigs.getByName("release")
+            isMinifyEnabled = true
+            isShrinkResources = true
+
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                file("proguard-rules.pro")
+            )
+            ndk {
+                debugSymbolLevel = "none"
+            }
+
+        }
+        getByName("debug") {
             signingConfig = signingConfigs.getByName("debug")
+            isMinifyEnabled = false
+            isShrinkResources = false
         }
     }
     flavorDimensions.add("Skeleton")

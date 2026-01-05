@@ -7,6 +7,10 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Placeholder(color: Theme.of(context).primary.shade70);
+    return Placeholder(
+      child: Center(
+        child: Text('LoginPage', style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Theme.of(context).primary)),
+      ),
+    );
   }
 }

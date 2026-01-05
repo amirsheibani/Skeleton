@@ -13,6 +13,7 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../handler/service/motion_service_handler.dart' as _i843;
 import '../../handler/service/gps_service_handler.dart' as _i417;
 import '../../handler/service/internet_service_handler.dart' as _i59;
 import '../../handler/service/nfc_service_handler.dart' as _i361;
@@ -29,12 +30,16 @@ _i174.GetIt $initGetIt(
 }) {
   final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
   final internetServiceModule = _$InternetServiceModule();
+  final motionServiceModule = _$MotionServiceModule();
   final gPSServiceModule = _$GPSServiceModule();
   final nFCServiceModule = _$NFCServiceModule();
   final deviceModule = _$DeviceModule();
   final remoteModule = _$RemoteModule();
   gh.singleton<_i59.InternetService>(
     () => internetServiceModule.provideInternetService(),
+  );
+  gh.singleton<_i843.MotionService>(
+    () => motionServiceModule.provideMotionService(),
   );
   gh.singleton<_i417.GPSService>(() => gPSServiceModule.provideGPSService());
   gh.singleton<_i361.NFCService>(() => nFCServiceModule.provideNFCService());
@@ -46,6 +51,8 @@ _i174.GetIt $initGetIt(
 }
 
 class _$InternetServiceModule extends _i59.InternetServiceModule {}
+
+class _$MotionServiceModule extends _i843.MotionServiceModule {}
 
 class _$GPSServiceModule extends _i417.GPSServiceModule {}
 

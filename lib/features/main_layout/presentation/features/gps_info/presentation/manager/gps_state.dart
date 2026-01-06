@@ -18,7 +18,8 @@ final class GPSSuccess extends GPSState{
   final Position? position;
   final GPSPermissionStatus? gpsPermissionStatus;
   final bool? isListening;
-  const GPSSuccess({this.position,this.gpsPermissionStatus, this.isListening});
+  final GPSLocationInfo? locationInfo; // اطلاعات کامل موقعیت / Complete location information
+  const GPSSuccess({this.position,this.gpsPermissionStatus, this.isListening, this.locationInfo});
 }
 final class GPSFailed extends GPSState{
   final String message;

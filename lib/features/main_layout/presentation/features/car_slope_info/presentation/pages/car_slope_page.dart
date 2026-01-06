@@ -1,6 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:skeleton/core/di/base/di_setup.dart';
 import 'package:skeleton/core/handler/service/car_slope_service.dart';
+import 'package:skeleton/core/handler/service/gps_service_handler.dart';
+import 'package:skeleton/core/handler/service/motion_service_handler.dart';
 import 'package:skeleton/features/main_layout/presentation/features/car_slope_info/presentation/manager/car_slope_provider.dart';
 import 'package:skeleton/features/main_layout/presentation/features/car_slope_info/presentation/manager/car_slope_state.dart';
 
@@ -12,12 +17,45 @@ class CarSlopePage extends ConsumerStatefulWidget {
 }
 
 class _CarSlopePageState extends ConsumerState<CarSlopePage> {
+  late final GPSService _gpsService;
+  late final MotionService _motionService;
+  
+  StreamSubscription<GPSLocationInfo>? _gpsInfoSub;
+  StreamSubscription<MotionData>? _motionSub;
+  
+  GPSLocationInfo? _lastGpsInfo;
+  MotionData? _lastMotionData;
+
   @override
   void initState() {
     super.initState();
+    _gpsService = getIt<GPSService>();
+    _motionService = getIt<MotionService>();
+    
+    // Listen to GPS location info
+    _gpsInfoSub = _gpsService.locationInfoStream.listen((info) {
+      setState(() {
+        _lastGpsInfo = info;
+      });
+    });
+    
+    // Listen to motion data
+    _motionSub = _motionService.motionStream.listen((data) {
+      setState(() {
+        _lastMotionData = data;
+      });
+    });
+    
     Future.microtask(() {
       ref.read(carSlopeProvider.notifier).init();
     });
+  }
+
+  @override
+  void dispose() {
+    _gpsInfoSub?.cancel();
+    _motionSub?.cancel();
+    super.dispose();
   }
 
   @override
@@ -77,6 +115,15 @@ class _CarSlopePageState extends ConsumerState<CarSlopePage> {
                 _buildSlopeDataCard(slopeData),
                 const SizedBox(height: 16),
                 _buildPositionCard(slopeData),
+                const SizedBox(height: 16),
+                if (_lastGpsInfo != null) ...[
+                  _buildGPSInfoCard(_lastGpsInfo!),
+                  const SizedBox(height: 16),
+                ],
+                if (_lastMotionData != null) ...[
+                  _buildMotionInfoCard(_lastMotionData!),
+                  const SizedBox(height: 16),
+                ],
               ],
               CarSlopeSuccess() => [
                 const Card(
@@ -273,6 +320,117 @@ class _CarSlopePageState extends ConsumerState<CarSlopePage> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildGPSInfoCard(GPSLocationInfo gpsInfo) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('اطلاعات GPS / GPS Information', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 16),
+            _buildInfoRow('منبع / Source', gpsInfo.sourceDescription),
+            _buildInfoRow('GPS Service', gpsInfo.isLocationServiceEnabled ? 'فعال / Enabled' : 'غیرفعال / Disabled'),
+            _buildInfoRow('دقت / Accuracy', '${gpsInfo.accuracyMeters.toStringAsFixed(2)} متر'),
+            const SizedBox(height: 8),
+            _buildSourceChip(gpsInfo.source),
+            const SizedBox(height: 16),
+            const Divider(),
+            const SizedBox(height: 8),
+            const Text('جزئیات موقعیت / Position Details', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 8),
+            _buildInfoRow('Latitude', gpsInfo.position.latitude.toStringAsFixed(6)),
+            _buildInfoRow('Longitude', gpsInfo.position.longitude.toStringAsFixed(6)),
+            _buildInfoRow('Altitude', '${gpsInfo.position.altitude.toStringAsFixed(2)} m'),
+            _buildInfoRow('Speed', '${gpsInfo.position.speed.toStringAsFixed(2)} m/s'),
+            _buildInfoRow('Heading', '${gpsInfo.position.heading.toStringAsFixed(2)}°'),
+            _buildInfoRow('Timestamp', gpsInfo.position.timestamp.toString()),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMotionInfoCard(MotionData motionData) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('اطلاعات Motion / Motion Information', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 16),
+            _buildInfoRow('Slope Direction', motionData.slopeDirection.toString().split('.').last),
+            _buildInfoRow('Pitch', '${motionData.pitchDegrees.toStringAsFixed(2)}°'),
+            const SizedBox(height: 8),
+            const Divider(),
+            const SizedBox(height: 8),
+            const Text('Accelerometer', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 8),
+            _buildInfoRow('X', motionData.accelerometer.x.toStringAsFixed(3)),
+            _buildInfoRow('Y', motionData.accelerometer.y.toStringAsFixed(3)),
+            _buildInfoRow('Z', motionData.accelerometer.z.toStringAsFixed(3)),
+            if (motionData.gyroscope != null) ...[
+              const SizedBox(height: 8),
+              const Divider(),
+              const SizedBox(height: 8),
+              const Text('Gyroscope', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 8),
+              _buildInfoRow('X', motionData.gyroscope!.x.toStringAsFixed(3)),
+              _buildInfoRow('Y', motionData.gyroscope!.y.toStringAsFixed(3)),
+              _buildInfoRow('Z', motionData.gyroscope!.z.toStringAsFixed(3)),
+            ],
+            if (motionData.velocityX != null || motionData.velocityY != null || motionData.velocityZ != null) ...[
+              const SizedBox(height: 8),
+              const Divider(),
+              const SizedBox(height: 8),
+              const Text('Velocity Changes (m/s³)', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 8),
+              _buildInfoRow('Velocity X', motionData.velocityX?.toStringAsFixed(3) ?? 'N/A'),
+              _buildInfoRow('Velocity Y', motionData.velocityY?.toStringAsFixed(3) ?? 'N/A'),
+              _buildInfoRow('Velocity Z', motionData.velocityZ?.toStringAsFixed(3) ?? 'N/A'),
+            ],
+            const SizedBox(height: 8),
+            _buildInfoRow('Timestamp', motionData.timestamp.toString()),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSourceChip(GPSLocationSource source) {
+    Color color;
+    IconData icon;
+
+    switch (source) {
+      case GPSLocationSource.gps:
+        color = Colors.green;
+        icon = Icons.satellite;
+        break;
+      case GPSLocationSource.network:
+        color = Colors.blue;
+        icon = Icons.wifi;
+        break;
+      case GPSLocationSource.passive:
+        color = Colors.orange;
+        icon = Icons.cached;
+        break;
+      case GPSLocationSource.unknown:
+        color = Colors.grey;
+        icon = Icons.help_outline;
+        break;
+    }
+
+    return Chip(
+      avatar: Icon(icon, color: color, size: 20),
+      label: Text(
+        source.toString().split('.').last.toUpperCase(),
+        style: TextStyle(color: color, fontWeight: FontWeight.bold),
+      ),
+      backgroundColor: color.withOpacity(0.1),
     );
   }
 }

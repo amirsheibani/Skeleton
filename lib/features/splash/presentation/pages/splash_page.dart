@@ -19,7 +19,7 @@ class SplashPage extends StatelessWidget {
           next.whenOrNull(
             data: (value) {
               // context.go(AppRouterPath.gpsInfo.path);
-              context.go(AppRouterPath.login.path);
+              context.go(AppRouterPath.motionInfo.path);
             },
           );
         },

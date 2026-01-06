@@ -456,6 +456,7 @@ extension OnAppTheme on ThemeData {
 
               ),
             ),
+
             bottomNavigationBarTheme: bottomNavigationBarTheme.copyWith(
               backgroundColor: text.shade100,
               selectedItemColor: primary.shade50,

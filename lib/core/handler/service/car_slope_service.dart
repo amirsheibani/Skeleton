@@ -240,6 +240,8 @@ class CarSlopeService {
   /// آزاد کردن منابع
   /// Dispose resources
   Future<void> dispose() async {
+    _motionService.dispose();
+    _gpsService.dispose();
     await _gpsSub?.cancel();
     await _motionSub?.cancel();
     await _slopeController.close();

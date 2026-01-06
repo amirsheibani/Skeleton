@@ -27,20 +27,37 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "END_OF_FILE": MessageLookupByLibrary.simpleMessage(""),
+    "already_have_account": MessageLookupByLibrary.simpleMessage(
+      "قبلاً حساب کاربری دارید؟ ",
+    ),
     "bad_certificate": MessageLookupByLibrary.simpleMessage(
       "گواهی مورد تایید نیست",
     ),
     "bad_request": MessageLookupByLibrary.simpleMessage("درخواست اشتباه"),
+    "confirm_password": MessageLookupByLibrary.simpleMessage("تأیید رمز عبور"),
     "connection_request_timeout": MessageLookupByLibrary.simpleMessage(
       "مهلت زمانی در ارتباط با سرور تموم شده",
     ),
     "dark": MessageLookupByLibrary.simpleMessage("تیره"),
+    "dont_have_account": MessageLookupByLibrary.simpleMessage(
+      "حساب کاربری ندارید؟ ",
+    ),
+    "email": MessageLookupByLibrary.simpleMessage("ایمیل"),
+    "email_placeholder": MessageLookupByLibrary.simpleMessage("abc@email.com"),
     "english": MessageLookupByLibrary.simpleMessage("انگلیسی"),
     "error_due_to_a_conflict": m0,
+    "forgot_password": MessageLookupByLibrary.simpleMessage(
+      "رمز عبور را فراموش کرده‌اید؟",
+    ),
+    "full_name": MessageLookupByLibrary.simpleMessage("نام کامل"),
     "internal_server_error": MessageLookupByLibrary.simpleMessage(
       "خطای داخلی سرور",
     ),
     "light": MessageLookupByLibrary.simpleMessage("روشن"),
+    "login_with_facebook": MessageLookupByLibrary.simpleMessage(
+      "ورود با فیسبوک",
+    ),
+    "login_with_google": MessageLookupByLibrary.simpleMessage("ورود با گوگل"),
     "method_not_allowed": MessageLookupByLibrary.simpleMessage(
       "روش غیر مجاز هست",
     ),
@@ -53,8 +70,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "not_acceptable": MessageLookupByLibrary.simpleMessage("قابل قبول نیست"),
     "not_found": MessageLookupByLibrary.simpleMessage("پیدا نشد"),
     "not_implemented": MessageLookupByLibrary.simpleMessage("پیاده سازی نشده"),
+    "or": MessageLookupByLibrary.simpleMessage("یا"),
+    "password": MessageLookupByLibrary.simpleMessage("رمز عبور"),
     "percentage": MessageLookupByLibrary.simpleMessage("درصد"),
     "persian": MessageLookupByLibrary.simpleMessage("فارسی"),
+    "remember_me": MessageLookupByLibrary.simpleMessage("مرا به خاطر بسپار"),
     "request_cancelled": MessageLookupByLibrary.simpleMessage(
       "درخواست کنسل شده",
     ),
@@ -65,6 +85,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "service_unavailable": MessageLookupByLibrary.simpleMessage(
       "سرویس در دسترس نمیباشد",
     ),
+    "sign_in": MessageLookupByLibrary.simpleMessage("ورود"),
+    "sign_in_button": MessageLookupByLibrary.simpleMessage("ورود"),
+    "sign_up": MessageLookupByLibrary.simpleMessage("ثبت نام"),
+    "sign_up_button": MessageLookupByLibrary.simpleMessage("ثبت نام"),
     "system": MessageLookupByLibrary.simpleMessage("سیستم"),
     "unable_to_process_the_data": m1,
     "unauthorised_request": MessageLookupByLibrary.simpleMessage(
@@ -73,8 +97,34 @@ class MessageLookup extends MessageLookupByLibrary {
     "unexpected_error_occurred": MessageLookupByLibrary.simpleMessage(
       "خطای غیرمنتظره ای رخ داد",
     ),
+    "validation_confirm_password_required":
+        MessageLookupByLibrary.simpleMessage(
+          "لطفاً تأیید رمز عبور را وارد کنید",
+        ),
+    "validation_email_invalid": MessageLookupByLibrary.simpleMessage(
+      "ایمیل معتبر نیست",
+    ),
+    "validation_email_required": MessageLookupByLibrary.simpleMessage(
+      "لطفاً ایمیل را وارد کنید",
+    ),
+    "validation_full_name_invalid": MessageLookupByLibrary.simpleMessage(
+      "لطفاً نام و نام خانوادگی را وارد کنید",
+    ),
+    "validation_full_name_required": MessageLookupByLibrary.simpleMessage(
+      "لطفاً نام کامل را وارد کنید",
+    ),
+    "validation_password_min_length": MessageLookupByLibrary.simpleMessage(
+      "رمز عبور باید حداقل ۶ کاراکتر باشد",
+    ),
+    "validation_password_required": MessageLookupByLibrary.simpleMessage(
+      "لطفاً رمز عبور را وارد کنید",
+    ),
+    "validation_passwords_not_match": MessageLookupByLibrary.simpleMessage(
+      "رمز عبور و تأیید آن مطابقت ندارند",
+    ),
     "your_connection_is_failed": MessageLookupByLibrary.simpleMessage(
       "اتصال شما ناموفق است",
     ),
+    "your_password": MessageLookupByLibrary.simpleMessage("رمز عبور شما"),
   };
 }

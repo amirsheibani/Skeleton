@@ -254,6 +254,211 @@ class S {
     );
   }
 
+  /// `Sign in`
+  String get sign_in {
+    return Intl.message('Sign in', name: 'sign_in', desc: '', args: []);
+  }
+
+  /// `Sign up`
+  String get sign_up {
+    return Intl.message('Sign up', name: 'sign_up', desc: '', args: []);
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message('Email', name: 'email', desc: '', args: []);
+  }
+
+  /// `abc@email.com`
+  String get email_placeholder {
+    return Intl.message(
+      'abc@email.com',
+      name: 'email_placeholder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message('Password', name: 'password', desc: '', args: []);
+  }
+
+  /// `Your password`
+  String get your_password {
+    return Intl.message(
+      'Your password',
+      name: 'your_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Full name`
+  String get full_name {
+    return Intl.message('Full name', name: 'full_name', desc: '', args: []);
+  }
+
+  /// `Confirm password`
+  String get confirm_password {
+    return Intl.message(
+      'Confirm password',
+      name: 'confirm_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remember Me`
+  String get remember_me {
+    return Intl.message('Remember Me', name: 'remember_me', desc: '', args: []);
+  }
+
+  /// `Forgot Password?`
+  String get forgot_password {
+    return Intl.message(
+      'Forgot Password?',
+      name: 'forgot_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SIGN IN`
+  String get sign_in_button {
+    return Intl.message('SIGN IN', name: 'sign_in_button', desc: '', args: []);
+  }
+
+  /// `SIGN UP`
+  String get sign_up_button {
+    return Intl.message('SIGN UP', name: 'sign_up_button', desc: '', args: []);
+  }
+
+  /// `OR`
+  String get or {
+    return Intl.message('OR', name: 'or', desc: '', args: []);
+  }
+
+  /// `Login with Google`
+  String get login_with_google {
+    return Intl.message(
+      'Login with Google',
+      name: 'login_with_google',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login with Facebook`
+  String get login_with_facebook {
+    return Intl.message(
+      'Login with Facebook',
+      name: 'login_with_facebook',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don't have an account? `
+  String get dont_have_account {
+    return Intl.message(
+      'Don\'t have an account? ',
+      name: 'dont_have_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Already have an account? `
+  String get already_have_account {
+    return Intl.message(
+      'Already have an account? ',
+      name: 'already_have_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your email`
+  String get validation_email_required {
+    return Intl.message(
+      'Please enter your email',
+      name: 'validation_email_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid email`
+  String get validation_email_invalid {
+    return Intl.message(
+      'Invalid email',
+      name: 'validation_email_invalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your password`
+  String get validation_password_required {
+    return Intl.message(
+      'Please enter your password',
+      name: 'validation_password_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must be at least 6 characters`
+  String get validation_password_min_length {
+    return Intl.message(
+      'Password must be at least 6 characters',
+      name: 'validation_password_min_length',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your full name`
+  String get validation_full_name_required {
+    return Intl.message(
+      'Please enter your full name',
+      name: 'validation_full_name_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your first and last name`
+  String get validation_full_name_invalid {
+    return Intl.message(
+      'Please enter your first and last name',
+      name: 'validation_full_name_invalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please confirm your password`
+  String get validation_confirm_password_required {
+    return Intl.message(
+      'Please confirm your password',
+      name: 'validation_confirm_password_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passwords do not match`
+  String get validation_passwords_not_match {
+    return Intl.message(
+      'Passwords do not match',
+      name: 'validation_passwords_not_match',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// ``
   String get END_OF_FILE {
     return Intl.message('', name: 'END_OF_FILE', desc: '', args: []);

@@ -5,10 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 
-/// توجه: برای استفاده از این سرویس باید پکیج زیر را به pubspec اضافه کنید:
-/// Note: To use this service, you must add the following package to pubspec:
-/// sensors_plus: ^5.0.0 (یا آخرین نسخه موجود / or latest version)
-///
+
 /// این سرویس با استفاده از شتاب‌سنج (Accelerometer) و ژیروسکوپ (Gyroscope)
 /// سعی می‌کند جهت حرکت روی شیب را به صورت تقریبی تشخیص دهد
 /// (سربالایی / سرپایینی / سطح صاف).
@@ -73,11 +70,21 @@ class MotionService {
   SlopeDirection get lastSlopeDirection => _lastSlope;
   double get lastPitchDegrees => _lastPitch;
 
+  bool _isListening = false;
+
+  /// آیا در حال listening است
+  /// Whether currently listening
+  bool get isListening => _isListening;
+
   MotionService() {
     _start();
   }
 
+  /// شروع listening به سنسورها
+  /// Start listening to sensors
   void _start() {
+    if (_isListening) return;
+
     // گوش دادن به شتاب‌سنج / Listening to accelerometer
     _accelerometerSub = accelerometerEventStream().listen(
       (event) {
@@ -107,6 +114,36 @@ class MotionService {
         }
       },
     );
+
+    _isListening = true;
+
+    if (kDebugMode) {
+      print('MotionService listening started');
+    }
+  }
+
+  /// توقف listening به سنسورها (بدون dispose کردن)
+  /// Stop listening to sensors (without disposing)
+  Future<void> stop() async {
+    if (!_isListening) return;
+
+    await _accelerometerSub?.cancel();
+    await _gyroscopeSub?.cancel();
+    _accelerometerSub = null;
+    _gyroscopeSub = null;
+
+    _isListening = false;
+
+    if (kDebugMode) {
+      print('MotionService listening stopped');
+    }
+  }
+
+  /// شروع مجدد listening به سنسورها
+  /// Restart listening to sensors
+  void start() {
+    if (_isListening) return;
+    _start();
   }
 
   void _processSensors() {
@@ -174,8 +211,7 @@ class MotionService {
   /// توقف گوش دادن به سنسورها و آزاد کردن منابع
   /// Stop listening to sensors and dispose resources
   Future<void> dispose() async {
-    await _accelerometerSub?.cancel();
-    await _gyroscopeSub?.cancel();
+    await stop();
     await _motionController.close();
 
     if (kDebugMode) {

@@ -7,6 +7,8 @@ base class Environment {
   String? url;
   bool? showChucker;
   bool? showPrettyLog;
+  String? supabaseUrl;
+  String? supabaseAnonKey;
 
   Environment(
       {required this.baseUrl,
@@ -16,6 +18,8 @@ base class Environment {
         required this.showRuntimeLog,
         required this.showChucker,
         required this.showPrettyLog,
+        required this.supabaseUrl,
+        required this.supabaseAnonKey,
       });
 }
 
@@ -61,6 +65,16 @@ final class DevEnvironment extends Environment {
     return super.showPrettyLog ?? false;
   }
 
+  @override
+  String get supabaseUrl {
+    return super.supabaseUrl ?? '';
+  }
+
+  @override
+  String get supabaseAnonKey {
+    return super.supabaseAnonKey ?? '';
+  }
+
   DevEnvironment(
       {required super.baseUrl,
       required super.apiVersion,
@@ -69,10 +83,22 @@ final class DevEnvironment extends Environment {
         required super.showRuntimeLog,
         required super.showChucker,
         required super.showPrettyLog,
+        required super.supabaseUrl,
+        required super.supabaseAnonKey,
       });
 }
 
 final class StageEnvironment extends Environment {
+  @override
+  String get supabaseUrl {
+    return super.supabaseUrl ?? '';
+  }
+
+  @override
+  String get supabaseAnonKey {
+    return super.supabaseAnonKey ?? '';
+  }
+
   StageEnvironment(
       {required super.baseUrl,
       required super.apiVersion,
@@ -81,6 +107,8 @@ final class StageEnvironment extends Environment {
         required super.showRuntimeLog,
         required super.showChucker,
         required super.showPrettyLog,
+        required super.supabaseUrl,
+        required super.supabaseAnonKey,
       });
 
   @override
@@ -129,6 +157,16 @@ final class StageEnvironment extends Environment {
 
 
 final class ProdEnvironment extends Environment {
+  @override
+  String get supabaseUrl {
+    return super.supabaseUrl ?? '';
+  }
+
+  @override
+  String get supabaseAnonKey {
+    return super.supabaseAnonKey ?? '';
+  }
+
   ProdEnvironment(
       {required super.baseUrl,
       required super.apiVersion,
@@ -137,6 +175,8 @@ final class ProdEnvironment extends Environment {
         required super.showRuntimeLog,
         required super.showChucker,
         required super.showPrettyLog,
+        required super.supabaseUrl,
+        required super.supabaseAnonKey,
       });
 
   @override

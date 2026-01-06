@@ -9,6 +9,12 @@
 </array>
 <key>NFCReaderUsageDescription</key>
 <string>برای اسکن تگ‌های NFC این اپ به دسترسی NFC نیاز دارد.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>این اپ برای تشخیص موقعیت و محاسبه شیب جاده به دسترسی GPS نیاز دارد.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>این اپ برای تشخیص موقعیت و محاسبه شیب جاده به دسترسی GPS نیاز دارد.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>این اپ برای تشخیص موقعیت و محاسبه شیب جاده به دسترسی GPS نیاز دارد.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

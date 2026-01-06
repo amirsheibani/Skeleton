@@ -13,9 +13,11 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
-import '../../handler/service/motion_service_handler.dart' as _i843;
+import '../../handler/service/auth_service_handler.dart' as _i692;
+import '../../handler/service/car_slope_service.dart' as _i306;
 import '../../handler/service/gps_service_handler.dart' as _i417;
 import '../../handler/service/internet_service_handler.dart' as _i59;
+import '../../handler/service/motion_service_handler.dart' as _i125;
 import '../../handler/service/nfc_service_handler.dart' as _i361;
 import '../local/device_info.dart' as _i510;
 import '../remote/interceptor/custom_pretty_logger.dart' as _i154;
@@ -30,34 +32,47 @@ _i174.GetIt $initGetIt(
 }) {
   final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
   final internetServiceModule = _$InternetServiceModule();
-  final motionServiceModule = _$MotionServiceModule();
   final gPSServiceModule = _$GPSServiceModule();
+  final motionServiceModule = _$MotionServiceModule();
+  final authServiceModule = _$AuthServiceModule();
   final nFCServiceModule = _$NFCServiceModule();
   final deviceModule = _$DeviceModule();
   final remoteModule = _$RemoteModule();
+  final carSlopeServiceModule = _$CarSlopeServiceModule();
   gh.singleton<_i59.InternetService>(
     () => internetServiceModule.provideInternetService(),
   );
-  gh.singleton<_i843.MotionService>(
+  gh.singleton<_i417.GPSService>(() => gPSServiceModule.provideGPSService());
+  gh.singleton<_i125.MotionService>(
     () => motionServiceModule.provideMotionService(),
   );
-  gh.singleton<_i417.GPSService>(() => gPSServiceModule.provideGPSService());
+  gh.singleton<_i692.AuthService>(() => authServiceModule.provideAuthService());
   gh.singleton<_i361.NFCService>(() => nFCServiceModule.provideNFCService());
   gh.singleton<_i510.DeviceInfo>(() => deviceModule.provideDeviceInfo());
   gh.singleton<_i937.ModeDetection>(() => _i937.ModeDetection());
   gh.singleton<_i154.CustomPrettyLogger>(() => remoteModule.prettyDioLogger);
   gh.singleton<_i361.Dio>(() => remoteModule.dio);
+  gh.singleton<_i306.CarSlopeService>(
+    () => carSlopeServiceModule.provideCarSlopeService(
+      gh<_i417.GPSService>(),
+      gh<_i125.MotionService>(),
+    ),
+  );
   return getIt;
 }
 
 class _$InternetServiceModule extends _i59.InternetServiceModule {}
 
-class _$MotionServiceModule extends _i843.MotionServiceModule {}
-
 class _$GPSServiceModule extends _i417.GPSServiceModule {}
+
+class _$MotionServiceModule extends _i125.MotionServiceModule {}
+
+class _$AuthServiceModule extends _i692.AuthServiceModule {}
 
 class _$NFCServiceModule extends _i361.NFCServiceModule {}
 
 class _$DeviceModule extends _i510.DeviceModule {}
 
 class _$RemoteModule extends _i707.RemoteModule {}
+
+class _$CarSlopeServiceModule extends _i306.CarSlopeServiceModule {}

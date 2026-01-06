@@ -18,6 +18,8 @@ Future main() async {
     showRuntimeLog: true,
     showChucker: true,
     showPrettyLog: true,
+    supabaseUrl: 'https://lavtjaupeeehoxrcdxbi.supabase.co',
+    supabaseAnonKey: 'sb_publishable_aKD9mHNB8q6WSuVlTM33UA_GGlB_MEx',
   );
 
   await appConfiguration();

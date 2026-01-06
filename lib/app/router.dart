@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:skeleton/features/auth_layout/presentation/features/login/presentation/pages/login_page.dart';
 import 'package:skeleton/features/auth_layout/presentation/features/register/presentation/pages/register_page.dart';
 import 'package:skeleton/features/auth_layout/presentation/layout/auth_layout.dart';
+import 'package:skeleton/features/main_layout/presentation/features/car_slope_info/presentation/pages/car_slope_page.dart';
 import 'package:skeleton/features/main_layout/presentation/features/gps_info/presentation/pages/gps_info_page.dart';
 import 'package:skeleton/features/main_layout/presentation/features/home/presentation/pages/home_page.dart';
 import 'package:skeleton/features/main_layout/presentation/features/profile/presentation/pages/profile_page.dart';
@@ -40,6 +41,7 @@ enum AppRouterPath{
   home('/'),
   profile('/profile'),
   gpsInfo('/gps-info'),
+  carSlope('/car-slope'),
   ;
 
 
@@ -100,6 +102,10 @@ final appRouter = GoRouter(
         GoRoute(
           path: AppRouterPath.gpsInfo.path,
           builder: (_, __) => const GPSInfoPage(),
+        ),
+        GoRoute(
+          path: AppRouterPath.carSlope.path,
+          builder: (_, __) => const CarSlopePage(),
         ),
       ],
     ),

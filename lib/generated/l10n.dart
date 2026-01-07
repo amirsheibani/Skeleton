@@ -18,10 +18,8 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(
-      _current != null,
-      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
-    );
+    assert(_current != null,
+        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
     return _current!;
   }
 
@@ -43,10 +41,8 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(
-      instance != null,
-      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
-    );
+    assert(instance != null,
+        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
     return instance!;
   }
 
@@ -56,32 +52,62 @@ class S {
 
   /// `Persian`
   String get persian {
-    return Intl.message('Persian', name: 'persian', desc: '', args: []);
+    return Intl.message(
+      'Persian',
+      name: 'persian',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `English`
   String get english {
-    return Intl.message('English', name: 'english', desc: '', args: []);
+    return Intl.message(
+      'English',
+      name: 'english',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Dark`
   String get dark {
-    return Intl.message('Dark', name: 'dark', desc: '', args: []);
+    return Intl.message(
+      'Dark',
+      name: 'dark',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Light`
   String get light {
-    return Intl.message('Light', name: 'light', desc: '', args: []);
+    return Intl.message(
+      'Light',
+      name: 'light',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `System`
   String get system {
-    return Intl.message('System', name: 'system', desc: '', args: []);
+    return Intl.message(
+      'System',
+      name: 'system',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Percentage`
   String get percentage {
-    return Intl.message('Percentage', name: 'percentage', desc: '', args: []);
+    return Intl.message(
+      'Percentage',
+      name: 'percentage',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Not Implemented`
@@ -116,7 +142,12 @@ class S {
 
   /// `Not Found`
   String get not_found {
-    return Intl.message('Not Found', name: 'not_found', desc: '', args: []);
+    return Intl.message(
+      'Not Found',
+      name: 'not_found',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Service is Unavailable`
@@ -141,7 +172,12 @@ class S {
 
   /// `Bad Request`
   String get bad_request {
-    return Intl.message('Bad Request', name: 'bad_request', desc: '', args: []);
+    return Intl.message(
+      'Bad Request',
+      name: 'bad_request',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `This request demand Authorization`
@@ -256,17 +292,32 @@ class S {
 
   /// `Sign in`
   String get sign_in {
-    return Intl.message('Sign in', name: 'sign_in', desc: '', args: []);
+    return Intl.message(
+      'Sign in',
+      name: 'sign_in',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Sign up`
   String get sign_up {
-    return Intl.message('Sign up', name: 'sign_up', desc: '', args: []);
+    return Intl.message(
+      'Sign up',
+      name: 'sign_up',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Email`
   String get email {
-    return Intl.message('Email', name: 'email', desc: '', args: []);
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `abc@email.com`
@@ -281,7 +332,12 @@ class S {
 
   /// `Password`
   String get password {
-    return Intl.message('Password', name: 'password', desc: '', args: []);
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Your password`
@@ -296,7 +352,12 @@ class S {
 
   /// `Full name`
   String get full_name {
-    return Intl.message('Full name', name: 'full_name', desc: '', args: []);
+    return Intl.message(
+      'Full name',
+      name: 'full_name',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Confirm password`
@@ -311,7 +372,12 @@ class S {
 
   /// `Remember Me`
   String get remember_me {
-    return Intl.message('Remember Me', name: 'remember_me', desc: '', args: []);
+    return Intl.message(
+      'Remember Me',
+      name: 'remember_me',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Forgot Password?`
@@ -326,17 +392,32 @@ class S {
 
   /// `SIGN IN`
   String get sign_in_button {
-    return Intl.message('SIGN IN', name: 'sign_in_button', desc: '', args: []);
+    return Intl.message(
+      'SIGN IN',
+      name: 'sign_in_button',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `SIGN UP`
   String get sign_up_button {
-    return Intl.message('SIGN UP', name: 'sign_up_button', desc: '', args: []);
+    return Intl.message(
+      'SIGN UP',
+      name: 'sign_up_button',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `OR`
   String get or {
-    return Intl.message('OR', name: 'or', desc: '', args: []);
+    return Intl.message(
+      'OR',
+      name: 'or',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Login with Google`
@@ -461,7 +542,12 @@ class S {
 
   /// ``
   String get END_OF_FILE {
-    return Intl.message('', name: 'END_OF_FILE', desc: '', args: []);
+    return Intl.message(
+      '',
+      name: 'END_OF_FILE',
+      desc: '',
+      args: [],
+    );
   }
 }
 

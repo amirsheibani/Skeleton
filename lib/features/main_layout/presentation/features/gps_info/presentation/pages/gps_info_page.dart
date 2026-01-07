@@ -126,37 +126,6 @@ class _GPSInfoPageState extends ConsumerState<GPSInfoPage> {
                     ),
                   ),
                 ),
-                if (gpsState.locationInfo != null) ...[
-                  const SizedBox(height: 16),
-                  Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'اطلاعات منبع موقعیت',
-                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(height: 16),
-                          _buildInfoRow(
-                            'منبع / Source',
-                            gpsState.locationInfo!.sourceDescription,
-                          ),
-                          _buildInfoRow(
-                            'GPS Service',
-                            gpsState.locationInfo!.isLocationServiceEnabled ? 'فعال / Enabled' : 'غیرفعال / Disabled',
-                          ),
-                          _buildInfoRow(
-                            'دقت / Accuracy',
-                            '${gpsState.locationInfo!.accuracyMeters.toStringAsFixed(2)} متر',
-                          ),
-                          _buildSourceChip(gpsState.locationInfo!.source),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
               ],
               GPSState() => [SizedBox()],
             },
@@ -226,42 +195,6 @@ class _GPSInfoPageState extends ConsumerState<GPSInfoPage> {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildSourceChip(GPSLocationSource source) {
-    Color color;
-    IconData icon;
-
-    switch (source) {
-      case GPSLocationSource.gps:
-        color = Colors.green;
-        icon = Icons.satellite;
-        break;
-      case GPSLocationSource.network:
-        color = Colors.blue;
-        icon = Icons.wifi;
-        break;
-      case GPSLocationSource.passive:
-        color = Colors.orange;
-        icon = Icons.cached;
-        break;
-      case GPSLocationSource.unknown:
-        color = Colors.grey;
-        icon = Icons.help_outline;
-        break;
-    }
-
-    return Padding(
-      padding: const EdgeInsets.only(top: 8),
-      child: Chip(
-        avatar: Icon(icon, color: color, size: 20),
-        label: Text(
-          source.toString().split('.').last.toUpperCase(),
-          style: TextStyle(color: color, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: color.withOpacity(0.1),
       ),
     );
   }

@@ -12,7 +12,7 @@ class GPSNotifier extends StateNotifier<GPSState> {
   GPSNotifier() : super(const GPSInit()){
     _gpsService = getIt<GPSService>();
   }
-  StreamSubscription<GPSLocationInfo>? _subscription;
+  StreamSubscription<Position>? _subscription;
   GPSPermissionStatus gpsPermissionStatus  = GPSPermissionStatus.denied;
 
   Future<void> init() async {
@@ -21,13 +21,7 @@ class GPSNotifier extends StateNotifier<GPSState> {
     state = GPSSuccess(position: null,gpsPermissionStatus: gpsPermissionStatus,isListening: false);
     if(gpsPermissionStatus == GPSPermissionStatus.granted){
       final position = await _gpsService.getCurrentPosition();
-      final locationInfo = position != null ? await _gpsService.getLocationInfo() : null;
-      state = GPSSuccess(
-        position: position,
-        gpsPermissionStatus: gpsPermissionStatus,
-        isListening: false,
-        locationInfo: locationInfo,
-      );
+      state = GPSSuccess(position: position,gpsPermissionStatus: gpsPermissionStatus,isListening: false);
     }else{
       state = GPSFailed('request Permission failed');
     }
@@ -36,13 +30,7 @@ class GPSNotifier extends StateNotifier<GPSState> {
   Future<void> getCurrentPosition() async {
     if(gpsPermissionStatus == GPSPermissionStatus.granted){
       final position = await _gpsService.getCurrentPosition();
-      final locationInfo = position != null ? await _gpsService.getLocationInfo() : null;
-      state = GPSSuccess(
-        position: position,
-        gpsPermissionStatus: gpsPermissionStatus,
-        isListening: false,
-        locationInfo: locationInfo,
-      );
+      state = GPSSuccess(position: position,gpsPermissionStatus: gpsPermissionStatus,isListening: false);
     }else{
       state = GPSFailed('request Permission failed');
     }
@@ -51,13 +39,7 @@ class GPSNotifier extends StateNotifier<GPSState> {
   Future<void> getLastKnownPosition() async {
     if(gpsPermissionStatus == GPSPermissionStatus.granted){
       final position = await _gpsService.getLastKnownPosition();
-      final locationInfo = position != null ? await _gpsService.getLastKnownLocationInfo() : null;
-      state = GPSSuccess(
-        position: position,
-        gpsPermissionStatus: gpsPermissionStatus,
-        isListening: false,
-        locationInfo: locationInfo,
-      );
+      state = GPSSuccess(position: position,gpsPermissionStatus: gpsPermissionStatus,isListening: false);
     }else{
       state = GPSFailed('request Permission failed');
     }
@@ -67,15 +49,8 @@ class GPSNotifier extends StateNotifier<GPSState> {
     if(gpsPermissionStatus == GPSPermissionStatus.granted){
       _subscription?.cancel();
       await _gpsService.startListening();
-      // استفاده از locationInfoStream برای دریافت اطلاعات کامل
-      // Use locationInfoStream to get complete information
-      _subscription = _gpsService.locationInfoStream.listen((locationInfo) {
-        state = GPSSuccess(
-          position: locationInfo.position,
-          gpsPermissionStatus: gpsPermissionStatus,
-          isListening: true,
-          locationInfo: locationInfo,
-        );
+      _subscription = _gpsService.positionStream.listen((value){
+        state = GPSSuccess(position: value,gpsPermissionStatus: gpsPermissionStatus,isListening: true);
       });
     }else{
       state = GPSFailed('request Permission failed');
@@ -86,13 +61,7 @@ class GPSNotifier extends StateNotifier<GPSState> {
       _subscription?.cancel();
       await _gpsService.stopListening();
       final position = await _gpsService.getLastKnownPosition();
-      final locationInfo = position != null ? await _gpsService.getLastKnownLocationInfo() : null;
-      state = GPSSuccess(
-        position: position,
-        gpsPermissionStatus: gpsPermissionStatus,
-        isListening: false,
-        locationInfo: locationInfo,
-      );
+      state = GPSSuccess(position: position,gpsPermissionStatus: gpsPermissionStatus,isListening: false);
     }else{
       state = GPSFailed('request Permission failed');
     }

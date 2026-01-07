@@ -227,11 +227,13 @@ class _AppState extends ConsumerState<App> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     final themeState = ref.watch(themeProvider);
-    final ThemeData theme = switch (themeState.type) {
+    final ThemeData baseTheme = switch (themeState.type) {
       ThemeType.light => ThemeData.light(),
       ThemeType.dark => ThemeData.dark(),
       ThemeType.system => ThemeData(brightness: MediaQuery.platformBrightnessOf(context)),
     };
+    final String languageCode = WidgetsBinding.instance.platformDispatcher.locale.languageCode;
+    final ThemeData theme = baseTheme.theme(languageCode);
 
     return StreamBuilder<String>(
       stream: brightnessDetection.getStream(),

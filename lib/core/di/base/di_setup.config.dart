@@ -31,28 +31,34 @@ _i174.GetIt $initGetIt(
   _i526.EnvironmentFilter? environmentFilter,
 }) {
   final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
+  final deviceModule = _$DeviceModule();
+  final remoteModule = _$RemoteModule();
   final internetServiceModule = _$InternetServiceModule();
   final gPSServiceModule = _$GPSServiceModule();
   final motionServiceModule = _$MotionServiceModule();
   final authServiceModule = _$AuthServiceModule();
   final nFCServiceModule = _$NFCServiceModule();
-  final deviceModule = _$DeviceModule();
-  final remoteModule = _$RemoteModule();
   final carSlopeServiceModule = _$CarSlopeServiceModule();
-  gh.singleton<_i59.InternetService>(
-    () => internetServiceModule.provideInternetService(),
-  );
-  gh.singleton<_i417.GPSService>(() => gPSServiceModule.provideGPSService());
-  gh.singleton<_i125.MotionService>(
-    () => motionServiceModule.provideMotionService(),
-  );
-  gh.singleton<_i692.AuthService>(() => authServiceModule.provideAuthService());
-  gh.singleton<_i361.NFCService>(() => nFCServiceModule.provideNFCService());
   gh.singleton<_i510.DeviceInfo>(() => deviceModule.provideDeviceInfo());
   gh.singleton<_i937.ModeDetection>(() => _i937.ModeDetection());
   gh.singleton<_i154.CustomPrettyLogger>(() => remoteModule.prettyDioLogger);
   gh.singleton<_i361.Dio>(() => remoteModule.dio);
-  gh.singleton<_i306.CarSlopeService>(
+  gh.lazySingleton<_i59.InternetService>(
+    () => internetServiceModule.provideInternetService(),
+  );
+  gh.lazySingleton<_i417.GPSService>(
+    () => gPSServiceModule.provideGPSService(),
+  );
+  gh.lazySingleton<_i125.MotionService>(
+    () => motionServiceModule.provideMotionService(),
+  );
+  gh.lazySingleton<_i692.AuthService>(
+    () => authServiceModule.provideAuthService(),
+  );
+  gh.lazySingleton<_i361.NFCService>(
+    () => nFCServiceModule.provideNFCService(),
+  );
+  gh.lazySingleton<_i306.CarSlopeService>(
     () => carSlopeServiceModule.provideCarSlopeService(
       gh<_i417.GPSService>(),
       gh<_i125.MotionService>(),
@@ -60,6 +66,10 @@ _i174.GetIt $initGetIt(
   );
   return getIt;
 }
+
+class _$DeviceModule extends _i510.DeviceModule {}
+
+class _$RemoteModule extends _i707.RemoteModule {}
 
 class _$InternetServiceModule extends _i59.InternetServiceModule {}
 
@@ -70,9 +80,5 @@ class _$MotionServiceModule extends _i125.MotionServiceModule {}
 class _$AuthServiceModule extends _i692.AuthServiceModule {}
 
 class _$NFCServiceModule extends _i361.NFCServiceModule {}
-
-class _$DeviceModule extends _i510.DeviceModule {}
-
-class _$RemoteModule extends _i707.RemoteModule {}
 
 class _$CarSlopeServiceModule extends _i306.CarSlopeServiceModule {}

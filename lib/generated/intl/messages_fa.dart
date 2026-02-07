@@ -34,6 +34,17 @@ class MessageLookup extends MessageLookupByLibrary {
       "گواهی مورد تایید نیست",
     ),
     "bad_request": MessageLookupByLibrary.simpleMessage("درخواست اشتباه"),
+    "bottom_navigation_bar_car_slope": MessageLookupByLibrary.simpleMessage(
+      "وضعیت",
+    ),
+    "bottom_navigation_bar_gps_info": MessageLookupByLibrary.simpleMessage(
+      "لوکیشن",
+    ),
+    "bottom_navigation_bar_home": MessageLookupByLibrary.simpleMessage("خانه"),
+    "bottom_navigation_bar_my_ip": MessageLookupByLibrary.simpleMessage("ادرس"),
+    "bottom_navigation_bar_profile": MessageLookupByLibrary.simpleMessage(
+      "پروفایل",
+    ),
     "confirm_password": MessageLookupByLibrary.simpleMessage("تأیید رمز عبور"),
     "connection_request_timeout": MessageLookupByLibrary.simpleMessage(
       "مهلت زمانی در ارتباط با سرور تموم شده",

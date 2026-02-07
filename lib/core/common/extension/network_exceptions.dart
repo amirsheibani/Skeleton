@@ -33,60 +33,46 @@ base class Exceptions{
         case DioExceptionType.badResponse:
           switch (error.response?.statusCode) {
             case 400:
-              final String? serverMessage = (error.response?.data is Map) ? error.response?.data['message'] : jsonDecode(error.response?.data)['message'];
-              exceptions = UnauthorisedRequest(message: serverMessage);
+              exceptions = UnauthorisedRequest(message: error.response?.getMessage(error));
               break;
             case 401:
-              final String? serverMessage = (error.response?.data is Map) ? error.response?.data['message'] : jsonDecode(error.response?.data)['message'];
-              exceptions = UnauthorisedRequest(message: serverMessage);
+              exceptions = UnauthorisedRequest(message: error.response?.getMessage(error));
               break;
             case 403:
-              final String? serverMessage = (error.response?.data is Map) ? error.response?.data['message'] : jsonDecode(error.response?.data)['message'];
-              exceptions = UnauthorisedRequest(message: serverMessage);
+              exceptions = UnauthorisedRequest(message: error.response?.getMessage(error));
               break;
             case 404:
-              final String? serverMessage = (error.response?.data is Map) ? error.response?.data['message'] : jsonDecode(error.response?.data)['message'];
-
-              exceptions = NotFound(message: serverMessage);
+              exceptions = NotFound(message: error.response?.getMessage(error));
               break;
             case 405:
-              final String? serverMessage = (error.response?.data is Map) ? error.response?.data['message'] : jsonDecode(error.response?.data)['message'];
-              exceptions = MethodNotAllowed(message: serverMessage);
+              exceptions = MethodNotAllowed(message: error.response?.getMessage(error));
               break;
             case 409:
-              final String? serverMessage = (error.response?.data is Map) ? error.response?.data['message'] : jsonDecode(error.response?.data)['message'];
-              exceptions = Conflict(message: serverMessage);
+              exceptions = Conflict(message: error.response?.getMessage(error));
               break;
             case 408:
               exceptions = RequestTimeout();
               break;
             case 422:
-              final String? serverMessage = (error.response?.data is Map) ? error.response?.data['message'] ?? error.response?.data['otp_code'] : jsonDecode(error.response?.data)['message'] ?? jsonDecode(error.response?.data)['otp_code'];
-              exceptions = UnauthorisedRequest(message: serverMessage);
+              exceptions = UnauthorisedRequest(message: error.response?.getMessage(error));
               break;
             case 425:
-              final String? serverMessage = (error.response?.data is Map) ? error.response?.data['message'] : jsonDecode(error.response?.data)['message'];
-              exceptions = TooEarlyRequests(message: serverMessage);
+              exceptions = TooEarlyRequests(message: error.response?.getMessage(error));
               break;
             case 426:
-              final String? serverMessage = (error.response?.data is Map) ? error.response?.data['message'] : jsonDecode(error.response?.data)['message'];
-              exceptions = UpgradeRequired(message: serverMessage);
+              exceptions = UpgradeRequired(message: error.response?.getMessage(error));
               break;
             case 429:
-              final String? serverMessage = (error.response?.data is Map) ? error.response?.data['message'] : jsonDecode(error.response?.data)['message'];
-              exceptions = TooManyRequests(message: serverMessage);
+              exceptions = TooManyRequests(message: error.response?.getMessage(error));
               break;
             case 452:
-              final String? serverMessage = (error.response?.data is Map) ? error.response?.data['message'] : jsonDecode(error.response?.data)['message'];
-              exceptions = UnauthorisedRequest(message: serverMessage);
+              exceptions = UnauthorisedRequest(message: error.response?.getMessage(error));
               break;
             case 500:
-              final String? serverMessage = (error.response?.data is Map) ? error.response?.data['message'] : jsonDecode(error.response?.data)['message'];
-              exceptions = InternalServerError(message: serverMessage);
+              exceptions = InternalServerError(message: error.response?.getMessage(error));
               break;
             case 502:
-              final String? serverMessage = (error.response?.data is Map) ? error.response?.data['message'] : jsonDecode(error.response?.data)['message'];
-              exceptions = InternalServerError(message: serverMessage);
+              exceptions = InternalServerError(message: error.response?.getMessage(error));
               break;
             case 503:
               exceptions = ServiceUnavailable();
@@ -224,3 +210,18 @@ final class TooEarlyRequests extends Exceptions{
 
 
 
+extension OnResponse on Response{
+  String? getMessage(DioException error){
+    String? message;
+    if(error.response?.data is Map){
+      message = error.response?.data['message'];
+    }else{
+      try{
+        message = jsonDecode(error.response?.data)['message'];
+      }catch(e){
+        message = error.response?.data;
+      }
+    }
+    return message;
+  }
+}

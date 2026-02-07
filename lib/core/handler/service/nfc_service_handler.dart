@@ -5,7 +5,7 @@ import 'package:nfc_manager/nfc_manager.dart';
 
 @module
 abstract class NFCServiceModule {
-  @singleton
+  @lazySingleton
   NFCService provideNFCService() => NFCService();
 }
 

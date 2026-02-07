@@ -6,7 +6,6 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:skeleton/core/di/base/di_setup.dart';
 import 'package:skeleton/core/di/local/device_info.dart';
 import 'package:skeleton/core/env/environment.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 late Environment environment;
 const platformChannel = MethodChannel('top.amirdeveloper.plugins');
@@ -18,12 +17,6 @@ Future<void> appConfiguration() async {
 
   // sslCert = await rootBundle.loadString('asset/certificates/cert.live.pem');
   sslCert = '';
-
-  // Initialize Supabase
-  await Supabase.initialize(
-    url: environment.supabaseUrl!,
-    anonKey: environment.supabaseAnonKey!,
-  );
 
   configureDependencies();
 

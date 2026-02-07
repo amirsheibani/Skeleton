@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:skeleton/core/di/base/di_setup.dart';
-import 'package:skeleton/core/handler/service/auth_service_handler.dart';
+import 'package:skeleton/core/handler/service/supabase_auth_service_handler.dart';
 import 'package:skeleton/features/auth_layout/presentation/features/register/presentation/manager/register_state.dart';
 
 class RegisterNotifier extends StateNotifier<RegisterState> {

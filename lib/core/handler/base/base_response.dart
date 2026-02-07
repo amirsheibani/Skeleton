@@ -3,7 +3,7 @@ import 'dart:convert' as convert;
 import 'package:retrofit/retrofit.dart';
 
 base class BaseResponse {
-  final String? status;
+  final int? status;
   final String? message;
 
   BaseResponse({this.status, this.message});
@@ -37,16 +37,23 @@ final class BaseListResponse<T> extends BaseResponse {
 
 final class BaseSingleResponse<T> extends BaseResponse {
   T? data;
+  dynamic meta;
 
   BaseSingleResponse({
     super.message,
     super.status,
     this.data,
+    this.meta,
   });
 
   factory BaseSingleResponse.fromJson(HttpResponse<String> response, Function(Map<String, dynamic>) create) {
     Map<String, dynamic> json =  convert.json.decode(response.data);
-    return BaseSingleResponse<T>(status: json['status'], message: json['message'], data: json['data'] != null ? create(json['data']) : null);
+
+    return BaseSingleResponse<T>(
+        status: json['status'],
+        message: json['message'],
+        data: json['data'] != null ? create(json['data']) : create(json),
+    );
   }
 }
 

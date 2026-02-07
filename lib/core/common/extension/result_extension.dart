@@ -1,12 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:skeleton/core/common/extension/network_exceptions.dart';
-import 'package:skeleton/core/handler/base/base_response.dart';
 import 'package:skeleton/core/handler/base/result.dart';
 
 
 extension ErrorApiResultExtension on Object {
-  Result toResult<T,M>(StackTrace? stackTrace){
+  Result<E> toResult<E>(StackTrace? stackTrace) {
     String str = 'unKnow error';
     String? status;
     if (this is PlatformException) {
@@ -15,16 +14,19 @@ extension ErrorApiResultExtension on Object {
       status = (this as DioException).response?.statusCode.toString();
       final error = Exceptions.getException(this, stackTrace);
       str = Exceptions.getErrorMessage(error);
-    } else {
+    }else if (this is StateError) {
+      str = toString();
+    }else {
       str = stackTrace.toString();
     }
-    return Failure<T,M>(str, status: status);
+    return Failure<E>(message: str, meta: status);
   }
 }
 
-extension SuccessApiResultExtension on BaseResponse {
-  Result toResult<T,M>(T data, {String? message, String? status, M? meta}) {
-    final apiResult = Success<T,M>(data:data, message: message, status: status,meta: meta);
-    return apiResult;
-  }
-}
+// extension SuccessApiResultExtension on BaseSingleResponse {
+//   Result<E> toResult<E,M>() {
+//     final result = Success<E>(data: data, message: message,meta: meta);
+//     return result;
+//   }
+// }
+

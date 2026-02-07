@@ -10,6 +10,7 @@ import 'package:skeleton/features/main_layout/presentation/features/car_slope_in
 import 'package:skeleton/features/main_layout/presentation/features/gps_info/presentation/pages/gps_info_page.dart';
 import 'package:skeleton/features/main_layout/presentation/features/home/presentation/pages/home_page.dart';
 import 'package:skeleton/features/main_layout/presentation/features/motion_info/presentation/pages/motion_Info_page.dart';
+import 'package:skeleton/features/main_layout/presentation/features/my_ip/presentation/pages/my_ip.dart';
 import 'package:skeleton/features/main_layout/presentation/features/profile/presentation/pages/profile_page.dart';
 import 'package:skeleton/features/main_layout/presentation/pages/main_layout.dart';
 import 'package:skeleton/features/splash/presentation/pages/splash_page.dart';
@@ -30,16 +31,15 @@ class GoRouterRefreshStream extends ChangeNotifier {
   }
 }
 
-final appRouterName  = {
-
-};
 
 enum AppRouterPath{
   splash('/splash'),
   login('/auth/login'),
   register('/auth/register'),
 
-  home('/'),
+  mainLayout('/'),
+  home('/home'),
+  myIp('/my-ip'),
   profile('/profile'),
   gpsInfo('/gps-info'),
   motionInfo('/motion-info'),
@@ -89,31 +89,33 @@ final appRouter = GoRouter(
         ),
       ],
     ),
-
-    ShellRoute(
-      builder: (context, state, child) => MainLayout(child: child),
-      routes: [
-        GoRoute(
-          path: AppRouterPath.home.path,
-          builder: (_, __) => const HomePage(),
-        ),
-        GoRoute(
-          path: AppRouterPath.profile.path,
-          builder: (_, __) => const ProfilePage(),
-        ),
-        GoRoute(
-          path: AppRouterPath.gpsInfo.path,
-          builder: (_, __) => const GPSInfoPage(),
-        ),
-        GoRoute(
-          path: AppRouterPath.carSlope.path,
-          builder: (_, __) => const CarSlopePage(),
-        ),
-        GoRoute(
-          path: AppRouterPath.motionInfo.path,
-          builder: (_, __) => const MotionInfoPage(),
-        ),
-      ],
+    GoRoute(
+      path: AppRouterPath.mainLayout.path,
+      builder: (_, __) => const MainLayout(),
+    ),
+    GoRoute(
+      path: AppRouterPath.home.path,
+      builder: (_, __) => const HomePage(),
+    ),
+    GoRoute(
+      path: AppRouterPath.myIp.path,
+      builder: (_, __) => const MyIpPage(),
+    ),
+    GoRoute(
+      path: AppRouterPath.profile.path,
+      builder: (_, __) => const ProfilePage(),
+    ),
+    GoRoute(
+      path: AppRouterPath.gpsInfo.path,
+      builder: (_, __) => const GPSInfoPage(),
+    ),
+    GoRoute(
+      path: AppRouterPath.carSlope.path,
+      builder: (_, __) => const CarSlopePage(),
+    ),
+    GoRoute(
+      path: AppRouterPath.motionInfo.path,
+      builder: (_, __) => const MotionInfoPage(),
     ),
   ],
 );

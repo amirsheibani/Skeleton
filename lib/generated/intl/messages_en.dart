@@ -34,6 +34,17 @@ class MessageLookup extends MessageLookupByLibrary {
       "Certificate is not Valid",
     ),
     "bad_request": MessageLookupByLibrary.simpleMessage("Bad Request"),
+    "bottom_navigation_bar_car_slope": MessageLookupByLibrary.simpleMessage(
+      "Car slope",
+    ),
+    "bottom_navigation_bar_gps_info": MessageLookupByLibrary.simpleMessage(
+      "GPS",
+    ),
+    "bottom_navigation_bar_home": MessageLookupByLibrary.simpleMessage("Home"),
+    "bottom_navigation_bar_my_ip": MessageLookupByLibrary.simpleMessage("IP"),
+    "bottom_navigation_bar_profile": MessageLookupByLibrary.simpleMessage(
+      "Profile",
+    ),
     "confirm_password": MessageLookupByLibrary.simpleMessage(
       "Confirm password",
     ),

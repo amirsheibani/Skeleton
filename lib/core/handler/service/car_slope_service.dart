@@ -380,7 +380,7 @@ import 'motion_service_handler.dart';
 
 @module
 abstract class CarSlopeServiceModule {
-  @singleton
+  @lazySingleton
   CarSlopeService provideCarSlopeService(
     GPSService gpsService,
     MotionService motionService,

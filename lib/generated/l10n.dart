@@ -459,6 +459,56 @@ class S {
     );
   }
 
+  /// `Home`
+  String get bottom_navigation_bar_home {
+    return Intl.message(
+      'Home',
+      name: 'bottom_navigation_bar_home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get bottom_navigation_bar_profile {
+    return Intl.message(
+      'Profile',
+      name: 'bottom_navigation_bar_profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `GPS`
+  String get bottom_navigation_bar_gps_info {
+    return Intl.message(
+      'GPS',
+      name: 'bottom_navigation_bar_gps_info',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Car slope`
+  String get bottom_navigation_bar_car_slope {
+    return Intl.message(
+      'Car slope',
+      name: 'bottom_navigation_bar_car_slope',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IP`
+  String get bottom_navigation_bar_my_ip {
+    return Intl.message(
+      'IP',
+      name: 'bottom_navigation_bar_my_ip',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// ``
   String get END_OF_FILE {
     return Intl.message('', name: 'END_OF_FILE', desc: '', args: []);

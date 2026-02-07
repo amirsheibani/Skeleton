@@ -8,20 +8,18 @@ import 'package:skeleton/core/handler/service/gps_service_handler.dart';
 import 'package:skeleton/features/main_layout/presentation/features/car_slope_info/presentation/manager/car_slope_state.dart';
 
 class CarSlopeNotifier extends StateNotifier<CarSlopeState> {
-  late CarSlopeService _carSlopeService;
-  late GPSService _gpsService;
+  // late CarSlopeService _carSlopeService;
+  // late GPSService _gpsService;
   StreamSubscription<CarSlopeData>? _slopeSubscription;
 
-  CarSlopeNotifier() : super(const CarSlopeInit()) {
-    _carSlopeService = getIt<CarSlopeService>();
-    _gpsService = getIt<GPSService>();
-  }
+  CarSlopeNotifier() : super(const CarSlopeInit()) {}
 
   /// Initialize and start listening to slope data
   /// مقداردهی اولیه و شروع listening به داده‌های شیب
   Future<void> init() async {
     state = const CarSlopeLoading();
     try {
+      GPSService _gpsService = getIt<GPSService>();
       // ابتدا permission را چک و درخواست می‌کنیم
       final permissionStatus = await _gpsService.requestPermission();
       
@@ -79,6 +77,7 @@ class CarSlopeNotifier extends StateNotifier<CarSlopeState> {
   Future<void> startListening() async {
     try {
       _slopeSubscription?.cancel();
+      CarSlopeService _carSlopeService = getIt<CarSlopeService>();
       _slopeSubscription = _carSlopeService.slopeStream.listen(
         (slopeData) {
           state = CarSlopeSuccess(
@@ -106,7 +105,7 @@ class CarSlopeNotifier extends StateNotifier<CarSlopeState> {
     try {
       await _slopeSubscription?.cancel();
       _slopeSubscription = null;
-
+      GPSService _gpsService = getIt<GPSService>();
       // توقف GPS listening هم
       await _gpsService.stopListening();
 

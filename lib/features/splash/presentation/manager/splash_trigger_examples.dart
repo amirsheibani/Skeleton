@@ -5,7 +5,6 @@
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skeleton/features/splash/presentation/manager/splash_provider.dart';
-import 'package:skeleton/features/splash/presentation/manager/splash_state.dart';
 
 // ============================================================================
 // مثال 1: Trigger کردن از طریق refresh (ساده‌ترین روش)
@@ -140,7 +139,7 @@ class _SplashPageState extends ConsumerState<SplashPage> {
 // ============================================================================
 
 /*
-// در car_slope_notifier.dart:
+// در main_layout_notifier.dart:
 class SplashNotifier extends AsyncNotifier<SplashState> {
   @override
   Future<SplashState> build() async {

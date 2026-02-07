@@ -309,7 +309,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 @module
 abstract class GPSServiceModule {
-  @singleton
+  @lazySingleton
   GPSService provideGPSService() => GPSService();
 }
 

@@ -16,7 +16,7 @@ import 'package:injectable/injectable.dart';
 
 @module
 abstract class InternetServiceModule {
-  @singleton
+  @lazySingleton
   InternetService provideInternetService() => InternetService();
 }
 

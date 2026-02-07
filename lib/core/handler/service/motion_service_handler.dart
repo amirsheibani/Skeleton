@@ -130,7 +130,7 @@ import 'package:sensors_plus/sensors_plus.dart';
 
 @module
 abstract class MotionServiceModule {
-  @singleton
+  @lazySingleton
   MotionService provideMotionService() => MotionService();
 }
 

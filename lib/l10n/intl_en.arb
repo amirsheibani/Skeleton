@@ -49,5 +49,11 @@
   "validation_full_name_invalid": "Please enter your first and last name",
   "validation_confirm_password_required": "Please confirm your password",
   "validation_passwords_not_match": "Passwords do not match",
+
+  "bottom_navigation_bar_home": "Home",
+  "bottom_navigation_bar_profile": "Profile",
+  "bottom_navigation_bar_gps_info": "GPS",
+  "bottom_navigation_bar_car_slope": "Car slope",
+  "bottom_navigation_bar_my_ip": "IP",
   "END_OF_FILE" : ""
 }

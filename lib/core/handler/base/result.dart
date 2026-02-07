@@ -1,11 +1,16 @@
-
-base class Result<T,M> {}
-
-final class Success<T,M> extends Result {
-  Success({required T data, String? message, String? status,M? meta});
+sealed class Result<T> {
+  const Result();
 }
 
-final class Failure<T,M> extends Result  {
-  Failure(String? message, {String? status});
+class Success<T> extends Result<T> {
+  final T? data;
+  final String? message;
+  final dynamic meta;
+  const Success({required this.data, this.message, this.meta,});
 }
 
+class Failure<T> extends Result<T> {
+  final String message;
+  final dynamic meta;
+  const Failure({required this.message, this.meta});
+}

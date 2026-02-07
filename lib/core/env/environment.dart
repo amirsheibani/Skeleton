@@ -27,6 +27,9 @@ final class DevEnvironment extends Environment {
 
   @override
   String get url {
+    if(super.apiVersion?.isEmpty ?? true){
+      return super.baseUrl!;
+    }
     return '${super.baseUrl!}/gateway/${super.apiVersion}/';
   }
 
@@ -181,6 +184,9 @@ final class ProdEnvironment extends Environment {
 
   @override
   String get url {
+    if(super.apiVersion?.isEmpty ?? true){
+      return super.baseUrl!;
+    }
     return '${super.baseUrl!}/gateway/${super.apiVersion}/';
   }
 

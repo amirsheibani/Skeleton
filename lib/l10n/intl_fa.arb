@@ -49,5 +49,10 @@
   "validation_full_name_invalid": "لطفاً نام و نام خانوادگی را وارد کنید",
   "validation_confirm_password_required": "لطفاً تأیید رمز عبور را وارد کنید",
   "validation_passwords_not_match": "رمز عبور و تأیید آن مطابقت ندارند",
+  "bottom_navigation_bar_home": "خانه",
+  "bottom_navigation_bar_profile": "پروفایل",
+  "bottom_navigation_bar_gps_info": "لوکیشن",
+  "bottom_navigation_bar_car_slope": "وضعیت",
+  "bottom_navigation_bar_my_ip": "ادرس",
   "END_OF_FILE" : ""
 }

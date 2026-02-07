@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:skeleton/core/di/base/di_setup.dart';
 import 'package:skeleton/core/handler/service/car_slope_service.dart';
 import 'package:skeleton/core/handler/service/gps_service_handler.dart';
 import 'package:skeleton/core/handler/service/motion_service_handler.dart';
@@ -17,34 +16,34 @@ class CarSlopePage extends ConsumerStatefulWidget {
 }
 
 class _CarSlopePageState extends ConsumerState<CarSlopePage> {
-  late final GPSService _gpsService;
-  late final MotionService _motionService;
+  // late final GPSService _gpsService;
+  // late final MotionService _motionService;
   
-  StreamSubscription<GPSLocationInfo>? _gpsInfoSub;
-  StreamSubscription<MotionData>? _motionSub;
+  // StreamSubscription<GPSLocationInfo>? _gpsInfoSub;
+  // StreamSubscription<MotionData>? _motionSub;
   
-  GPSLocationInfo? _lastGpsInfo;
-  MotionData? _lastMotionData;
+  // GPSLocationInfo? _lastGpsInfo;
+  // MotionData? _lastMotionData;
 
   @override
   void initState() {
     super.initState();
-    _gpsService = getIt<GPSService>();
-    _motionService = getIt<MotionService>();
+    // _gpsService = getIt<GPSService>();
+    // _motionService = getIt<MotionService>();
     
     // Listen to GPS location info
-    _gpsInfoSub = _gpsService.locationInfoStream.listen((info) {
-      setState(() {
-        _lastGpsInfo = info;
-      });
-    });
+    // _gpsInfoSub = _gpsService.locationInfoStream.listen((info) {
+    //   setState(() {
+    //     _lastGpsInfo = info;
+    //   });
+    // });
     
     // Listen to motion data
-    _motionSub = _motionService.motionStream.listen((data) {
-      setState(() {
-        _lastMotionData = data;
-      });
-    });
+    // _motionSub = _motionService.motionStream.listen((data) {
+    //   setState(() {
+    //     _lastMotionData = data;
+    //   });
+    // });
     
     Future.microtask(() {
       ref.read(carSlopeProvider.notifier).init();
@@ -53,8 +52,8 @@ class _CarSlopePageState extends ConsumerState<CarSlopePage> {
 
   @override
   void dispose() {
-    _gpsInfoSub?.cancel();
-    _motionSub?.cancel();
+    // _gpsInfoSub?.cancel();
+    // _motionSub?.cancel();
     super.dispose();
   }
 
@@ -116,14 +115,14 @@ class _CarSlopePageState extends ConsumerState<CarSlopePage> {
                 const SizedBox(height: 16),
                 _buildPositionCard(slopeData),
                 const SizedBox(height: 16),
-                if (_lastGpsInfo != null) ...[
-                  _buildGPSInfoCard(_lastGpsInfo!),
-                  const SizedBox(height: 16),
-                ],
-                if (_lastMotionData != null) ...[
-                  _buildMotionInfoCard(_lastMotionData!),
-                  const SizedBox(height: 16),
-                ],
+                // if (_lastGpsInfo != null) ...[
+                //   _buildGPSInfoCard(_lastGpsInfo!),
+                //   const SizedBox(height: 16),
+                // ],
+                // if (_lastMotionData != null) ...[
+                //   _buildMotionInfoCard(_lastMotionData!),
+                //   const SizedBox(height: 16),
+                // ],
               ],
               CarSlopeSuccess() => [
                 const Card(

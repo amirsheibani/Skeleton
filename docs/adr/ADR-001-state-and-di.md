@@ -106,7 +106,7 @@ Domain / Data
 ---
 
 </div>
-<div dir="ltr">
+<div dir="rtl">
 
 ## Anti-Patterns
 
@@ -121,7 +121,7 @@ final loginUseCaseProvider = Provider(
 );
 ```
 </div>
-<div dir="ltr">
+<div dir="rtl">
 
 **مشکل:**
 - وابستگی Domain به Presentation
@@ -142,7 +142,7 @@ class LoginUseCase {
 ---
 
 </div>
-<div dir="ltr">
+<div dir="rtl">
 
 ### ❌ Anti-pattern 2: Business Logic داخل Provider
 </div>
@@ -154,7 +154,7 @@ final loginProvider = FutureProvider((ref) async {
 });
 ```
 </div>
-<div dir="ltr">
+<div dir="rtl">
 
 **مشکل:**
 - flow غیرقابل trace

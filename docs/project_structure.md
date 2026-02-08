@@ -50,6 +50,8 @@ Clean Architecture تضمین می‌کند که:
 * ساخت dependency graph شفاف و قابل تست
 * حذف tight coupling بین لایه‌ها
 * مدیریت lifecycle آبجکت‌ها (singleton / lazy / scoped)
+</div>
+<div dir="ltr">
 
 ```dart
 @injectable
@@ -57,6 +59,8 @@ class LoginUseCase {
   LoginUseCase(this.repository);
 }
 ```
+</div>
+<div dir="rtl">
 
 ✔️ Domain و Application کاملاً **pure Dart** باقی می‌مانند
 
@@ -73,10 +77,14 @@ class LoginUseCase {
 * feature flags
 * theme / locale
 
+</div>
+<div dir="ltr">
+
 ```dart
 final sessionProvider = StateProvider<Session?>((ref) => null);
 ```
-
+</div>
+<div dir="rtl">
 > Riverpod جایگزین DI نیست و برای ساخت UseCase یا Repository استفاده نمی‌شود.
 
 ---
@@ -86,12 +94,17 @@ final sessionProvider = StateProvider<Session?>((ref) => null);
 * ساده
 * readable
 * مناسب stateهای صفحه‌ای
+</div>
+<div dir="ltr">
 
 ```dart
 class LoginCubit extends Cubit<LoginState> {}
 ```
-
 ---
+
+</div>
+
+<div dir="rtl">
 
 ### Bloc (Business Flow)
 
@@ -127,12 +140,19 @@ GetX به‌صورت ذاتی:
 
 ### استفاده از Riverpod به‌عنوان DI
 
+</div>
+<div dir="ltr">
+
 ```dart
 // ❌ Anti-pattern
 final useCaseProvider = Provider((ref) => LoginUseCase());
 ```
+</div>
+<div dir="rtl">
 
 ### Business Logic داخل Provider
+</div>
+<div dir="ltr">
 
 ```dart
 // ❌ Anti-pattern
@@ -140,8 +160,13 @@ final loginProvider = FutureProvider((ref) async {
   // logic پیچیده
 });
 ```
+</div>
+<div dir="rtl">
 
 ### استفاده از DI برای UI State
+</div>
+
+<div dir="ltr">
 
 ```dart
 // ❌ Anti-pattern
@@ -149,8 +174,12 @@ getIt.registerSingleton<LoginState>(LoginState());
 ```
 
 ---
+</div>
+<div dir="rtl">
 
 ## 🏗️ نمای کلی معماری
+</div>
+<div dir="ltr">
 
 ```
 Presentation
@@ -166,6 +195,8 @@ Domain / Data
 ```
 
 ---
+</div>
+<div dir="rtl">
 
 ## ✅ جمع‌بندی
 

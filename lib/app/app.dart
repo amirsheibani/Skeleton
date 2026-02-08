@@ -1,4 +1,7 @@
 
+import 'dart:io';
+
+import 'package:kiosk/kiosk.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -31,8 +34,15 @@ class _AppState extends ConsumerState<App> with WidgetsBindingObserver {
 
   // late final NFCService _nfcService;
 
+
+
   static const String _keyAppWasInForeground = 'app_was_in_foreground';
   static const String _keyAppLastForegroundTime = 'app_last_foreground_time';
+
+  static int k = 0;
+
+  bool kioskMode = false;
+
 
   @override
   void initState() {
@@ -87,6 +97,15 @@ class _AppState extends ConsumerState<App> with WidgetsBindingObserver {
           break;
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      kioskMode = await Kiosk.instance.isInKioskMode() ?? false;
+      if(!kioskMode){
+        kioskMode = await Kiosk.instance.startKioskMode() ?? false;
+      }
+      setState(() {});
+    });
+
   }
 
   @override
@@ -235,45 +254,55 @@ class _AppState extends ConsumerState<App> with WidgetsBindingObserver {
     final String languageCode = WidgetsBinding.instance.platformDispatcher.locale.languageCode;
     final ThemeData theme = baseTheme.theme(languageCode);
 
-    return StreamBuilder<String>(
-      stream: brightnessDetection.getStream(),
-      builder: (context, snapshot) {
-        final deviceInfo = getIt<DeviceInfo>();
-        if (deviceInfo.platformName == PlatformName.iOS) {
-          if (snapshot.hasData) {
-            // context.read<ThemeAndLanguageCubit>().changeTheme(
-            //     manualSelectThemeType: snapshot.data == 'dark'
-            //         ? ThemeType.dark
-            //         : ThemeType.light);
-          }
-        } else {
-          PlatformDispatcher.instance.onPlatformBrightnessChanged = () {
-            // Brightness brightness = PlatformDispatcher.instance.platformBrightness;
-            // context.read<ThemeAndLanguageCubit>().changeTheme(
-            //     manualSelectThemeType: brightness == Brightness.dark
-            //         ? ThemeType.dark
-            //         : ThemeType.light);
-          };
+    return GestureDetector(
+      onTap: (){
+        if(k == 5){
+          k = 0;
+          Kiosk.instance.stopKioskMode();
+        }else{
+          k++;
         }
-        return DismissibleKeyboard(
-          child: MaterialApp.router(
-            debugShowCheckedModeBanner: false,
-            supportedLocales: S.delegate.supportedLocales,
-            localizationsDelegates: LocaleConfigs.localizationsDelegates,
-            routerConfig: appRouter,
-            theme: theme,
-            builder: (context, child) {
-              return MediaQuery(
-                data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(1.0)),
-                child: DefaultTextStyle(
-                  style: const TextStyle(fontFamily: 'IRANSansX'),
-                  child: AppBlurOverlay(child: child ?? const SizedBox()),
-                ),
-              );
-            },
-          ),
-        );
       },
+      child: StreamBuilder<String>(
+        stream: brightnessDetection.getStream(),
+        builder: (context, snapshot) {
+          final deviceInfo = getIt<DeviceInfo>();
+          if (deviceInfo.platformName == PlatformName.iOS) {
+            if (snapshot.hasData) {
+              // context.read<ThemeAndLanguageCubit>().changeTheme(
+              //     manualSelectThemeType: snapshot.data == 'dark'
+              //         ? ThemeType.dark
+              //         : ThemeType.light);
+            }
+          } else {
+            PlatformDispatcher.instance.onPlatformBrightnessChanged = () {
+              // Brightness brightness = PlatformDispatcher.instance.platformBrightness;
+              // context.read<ThemeAndLanguageCubit>().changeTheme(
+              //     manualSelectThemeType: brightness == Brightness.dark
+              //         ? ThemeType.dark
+              //         : ThemeType.light);
+            };
+          }
+          return DismissibleKeyboard(
+            child: MaterialApp.router(
+              debugShowCheckedModeBanner: false,
+              supportedLocales: S.delegate.supportedLocales,
+              localizationsDelegates: LocaleConfigs.localizationsDelegates,
+              routerConfig: appRouter,
+              theme: theme,
+              builder: (context, child) {
+                return MediaQuery(
+                  data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(1.0)),
+                  child: DefaultTextStyle(
+                    style: const TextStyle(fontFamily: 'IRANSansX'),
+                    child: AppBlurOverlay(child: child ?? const SizedBox()),
+                  ),
+                );
+              },
+            ),
+          );
+        },
+      ),
     );
   }
 }
@@ -302,3 +331,8 @@ class _DesktopNotSupported extends StatelessWidget {
     );
   }
 }
+const String _unsupportedMessage = '''
+Single App mode is supported only for devices that are supervised 
+using Mobile Device Management (MDM) and the app itself must 
+be enabled for this mode by MDM.
+''';

@@ -741,6 +741,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.1"
+  kiosk:
+    dependency: "direct main"
+    description:
+      name: kiosk
+      sha256: "53851f2bb5214f362589bdee734e3a6ebb184ca5fa90eabb338ce7d8552a4eda"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.1"
   latlong2:
     dependency: transitive
     description:

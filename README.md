@@ -75,6 +75,73 @@ lib/
 | **pages** | Full-screen widgets | Compose widgets, listen to manager (e.g. ref.watch(provider)), navigate. |
 | **widgets** | Reusable UI inside the feature | Prefer small, focused widgets. Naming: `<feature>_<name>_widget.dart` or `<feature>_<name>.dart`. |
 
+## Clean Architecture
+
+- **Layers:** A feature can have `domain`, `data`, and `presentation` layers. Dependencies point inward only: presentation → domain ← data.
+- **Domain:** Pure models (entities), repository contracts (abstract interfaces), and optionally use cases. No dependency on Flutter or any framework.
+- **Data:** Repository implementations, data sources (remote/local), DTOs and mappers to entities. Depends only on domain.
+- **Presentation:** UI and state (e.g. Riverpod); uses only domain/use case or injected repository.
+- **Core:** Shared code (DI, theme, handlers, extensions) lives in `core/` and is used by features; features may depend on core, core must not depend on any feature.
+- **Dependency rule:** No layer may depend on an outer layer (e.g. domain must not depend on data or presentation).
+
+**Example (my_ip feature):** For “show device IP” you can implement:
+- **domain:** Entity e.g. `MyIpInfo`, contract `GetMyIpRepository`; no Flutter or API dependency.
+- **data:** e.g. `GetMyIpRepositoryImpl` that fetches IP from a service/API and maps DTO to entity.
+- **presentation:** `MyIpPage`, `MyIpNotifier`/`MyIpState` that only get the repository from DI and render from state.
+
+## Layering (per feature)
+
+Suggested folder structure and dependency direction:
+
+```
+feature_name/
+├── domain/                    # Core logic; no Flutter/framework dependency
+│   ├── entities/
+│   ├── repositories/          # Interface contracts
+│   └── use_cases/             # Optional: single action (e.g. GetUserProfile)
+├── data/
+│   ├── datasources/           # remote (API) and local (DB/cache)
+│   ├── models/                # DTOs and mappers to entity
+│   └── repositories/          # Implementations of domain interfaces
+└── presentation/
+    ├── manager/               # Notifier/Provider and State
+    ├── pages/
+    └── widgets/
+```
+
+- **Dependency direction:** presentation → domain ← data. Domain does not depend on any other layer.
+- **Core** is shared; features may depend on core, core must not depend on features.
+- **app/** is only routing and shell; it depends on core and features.
+
+If a feature is simple, you can start with only `presentation` and use handlers/services from core; add `domain` and `data` as the feature grows.
+
+**Example folder structure for my_ip:**
+
+```
+features/my_ip/
+├── domain/
+│   ├── entities/
+│   │   └── my_ip_info.dart
+│   └── repositories/
+│       └── get_my_ip_repository.dart
+├── data/
+│   ├── datasources/
+│   │   └── my_ip_remote_datasource.dart
+│   ├── models/
+│   │   └── my_ip_dto.dart
+│   └── repositories/
+│       └── get_my_ip_repository_impl.dart
+└── presentation/
+    ├── manager/
+    │   ├── my_ip_notifier.dart
+    │   ├── my_ip_provider.dart
+    │   └── my_ip_state.dart
+    ├── pages/
+    │   └── my_ip_page.dart
+    └── widgets/
+        └── my_ip_display_widget.dart
+```
+
 ## Conventions & Rules
 
 ### Naming
@@ -195,6 +262,8 @@ The architecture is **not tied** to a single framework (e.g. GetX). You can swap
 این پروژه با ساختار **feature-first** طراحی شده و مرز مشخصی بین **core** (ابزارهای مشترک، DI، تم، سرویس‌ها) و **features** (صفحات و منطق آن‌ها) دارد. هر feature به صورت مستقل state، pages و widgets خود را دارد.
 
 ## ساختار پروژه
+</div>
+<div dir="ltr">
 
 ```
 lib/
@@ -247,6 +316,9 @@ lib/
 └── generated/              # خروجی l10n (دستکاری نکنید)
 ```
 
+</div>
+<div dir="rtl">
+
 ## لایه‌ها و مسئولیت‌ها
 
 | لایه | هدف | قوانین |
@@ -258,6 +330,82 @@ lib/
 | **manager** | نگهدارنده state (مثلاً Notifier/Cubit)، provider، کلاس‌های state | رویدادها را هندل و state را emit می‌کند. سرویس‌ها را از DI (GetIt) می‌گیرد، نه از context. |
 | **pages** | ویجت‌های تمام‌صفحه | ویجت‌ها را ترکیب می‌کند، به manager گوش می‌دهد (مثلاً ref.watch(provider))، ناوبری. |
 | **widgets** | UI قابل استفاده داخل همان feature | ویجت‌های کوچک و متمرکز. نام‌گذاری: `<feature>_<name>_widget.dart` یا `<feature>_<name>.dart`. |
+
+## Clean Architecture
+
+- **لایه‌ها:** هر feature می‌تواند لایه‌های `domain`، `data`، `presentation` داشته باشد. وابستگی فقط از بیرون به داخل است: presentation → domain ← data.
+- **Domain:** مدل‌های خالص (entities)، قرارداد repository (interface)، و در صورت نیاز use case. بدون وابستگی به Flutter یا فریمورک.
+- **Data:** پیاده‌سازی repository، data source (remote/local)، DTO و مپر به entity. فقط به domain وابسته است.
+- **Presentation:** UI و state (مثلاً Riverpod)؛ فقط از domain/use case یا repository تزریق‌شده استفاده می‌کند.
+- **Core:** کد مشترک (DI، theme، handler، extension) در `core/` است و توسط features استفاده می‌شود؛ feature به core وابسته می‌تواند باشد، core به feature نه.
+- **قانون وابستگی:** هیچ لایه‌ای به لایهٔ بیرونی وابسته نباشد (مثلاً domain به data یا presentation وابسته نباشد).
+
+**مثال (فیچر my_ip):** برای «نمایش IP دستگاه»:
+- **domain:** entity مثل `MyIpInfo`، قرارداد `GetMyIpRepository`؛ بدون وابستگی به Flutter یا API.
+- **data:** مثلاً `GetMyIpRepositoryImpl` که IP را از سرویس/API می‌گیرد و DTO را به entity مپ می‌کند.
+- **presentation:** `MyIpPage`، `MyIpNotifier`/`MyIpState` که فقط repository را از DI می‌گیرند و روی state رندر می‌کنند.
+
+## لایه‌بندی (به ازای هر feature)
+
+ساختار پوشه و جهت وابستگی پیشنهادی:
+
+</div>
+<div dir="ltr">
+
+```
+feature_name/
+├── domain/                    # هستهٔ منطق؛ بدون وابستگی به Flutter/فریمورک
+│   ├── entities/
+│   ├── repositories/         # قرارداد (interface)
+│   └── use_cases/            # اختیاری: یک عمل (مثلاً GetUserProfile)
+├── data/
+│   ├── datasources/          # remote (API) و local (DB/cache)
+│   ├── models/               # DTO و مپر به entity
+│   └── repositories/         # پیاده‌سازی interfaceهای domain
+└── presentation/
+    ├── manager/              # Notifier/Provider و State
+    ├── pages/
+    └── widgets/
+```
+</div>
+<div dir="rtl">
+- **جهت وابستگی:** presentation → domain ← data. domain به هیچ لایهٔ دیگری وابسته نیست.
+- **Core** مشترک است؛ featureها می‌توانند به core وابسته باشند، core به feature وابسته نشود.
+- **app/** فقط routing و shell است؛ به core و features وابسته است.
+
+اگر feature ساده است، می‌توانید فقط `presentation` داشته باشید و از handler/سرویس core استفاده کنید؛ با رشد feature لایه‌های `domain` و `data` را اضافه کنید.
+
+**مثال ساختار پوشه برای my_ip:**
+</div>
+<div dir="ltr">
+
+```
+features/my_ip/
+├── domain/
+│   ├── entities/
+│   │   └── my_ip_info.dart
+│   └── repositories/
+│       └── get_my_ip_repository.dart
+├── data/
+│   ├── datasources/
+│   │   └── my_ip_remote_datasource.dart
+│   ├── models/
+│   │   └── my_ip_dto.dart
+│   └── repositories/
+│       └── get_my_ip_repository_impl.dart
+└── presentation/
+    ├── manager/
+    │   ├── my_ip_notifier.dart
+    │   ├── my_ip_provider.dart
+    │   └── my_ip_state.dart
+    ├── pages/
+    │   └── my_ip_page.dart
+    └── widgets/
+        └── my_ip_display_widget.dart
+```
+</div>
+
+<div dir="rtl">
 
 ## قوانین و قراردادها
 
@@ -312,6 +460,8 @@ lib/
 
 ### اجرای اپ
 
+<div dir="ltr">
+
 ```bash
 # توسعه
 flutter run -t lib/main_dev.dart
@@ -322,6 +472,8 @@ flutter run -t lib/main_stage.dart
 # تولید
 flutter run -t lib/main_prod.dart
 ```
+</div>
+<div dir="rtl">
 
 ### اضافه کردن feature جدید (زیر main_layout)
 
@@ -358,7 +510,6 @@ flutter run -t lib/main_prod.dart
 معماری به یک فریمورک خاص (مثل GetX) وابسته نیست. می‌توانید مدیریت state (مثلاً به Bloc) یا auth (مثلاً به Firebase) را عوض کنید و فقط لایه‌های manager و handler را جایگزین کنید؛ همان ساختار پوشه و قوانین لایه‌بندی حفظ می‌شود.
 
 ## منابع و رفرنس
-
 
 - [مستندات Flutter](https://docs.flutter.dev/)
 - [نمونه‌های معماری Flutter](https://github.com/brianegan/flutter_architecture_samples)

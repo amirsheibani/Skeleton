@@ -3,16 +3,15 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:framework_base/packages/framework_core/lib/core_framework.dart';
 import 'package:framework_base/packages/framework_handler/lib/handler_framework.dart';
+import 'package:framework_base/packages/framework_utils/lib/utils_framework.dart';
 import 'package:skeleton/app/app_lifecycle_widget.dart';
 import 'package:skeleton/app/router.dart';
 import 'package:skeleton/core/config/locale_configs.dart';
 import 'package:skeleton/core/di/base/di_setup.dart';
 import 'package:skeleton/core/di/base/mode_detection.dart';
-import 'package:skeleton/core/di/local/device_info.dart';
 import 'package:skeleton/core/theme/app_theme.dart';
-import 'package:skeleton/core/theme/theme_manager/theme_provider.dart';
-import 'package:skeleton/core/widgets/dismissible_keyboard.dart';
 import 'package:skeleton/generated/l10n.dart';
 
 class App extends ConsumerStatefulWidget {

@@ -19,21 +19,19 @@ dependencies:
   go_router: ^17.0.1
   flutter_riverpod: ^2.4.0
   cupertino_icons: ^1.0.8
-  pretty_dio_logger: ^1.4.0
+
   dio: ^5.9.0
   retrofit: ^4.9.2
   chucker_flutter: ^1.8.5
   flutter_map: ^8.2.1
   permission_handler: ^12.0.1
-  geolocator: ^14.0.2
-  device_info_plus: ^11.5.0
   get_it: ^8.2.0
   camera: ^0.11.2
   shared_preferences: ^2.5.3
-  curl_generator: ^1.0.2
-  google_api_availability: ^5.0.1
+
+
   universal_platform: ^1.1.0
-  universal_html: ^2.2.4
+
   persian_datetime_picker: 3.1.1
   connectivity_plus: ^6.0.3
   internet_connection_checker: ^1.0.0+1

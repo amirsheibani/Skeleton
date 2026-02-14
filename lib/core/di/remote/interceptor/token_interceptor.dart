@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:framework_base/packages/framework_utils/lib/utils_framework.dart';
 import 'package:skeleton/core/di/base/di_setup.dart';
-import 'package:skeleton/core/di/local/device_info.dart';
 
 
 class TokenInterceptor extends Interceptor {

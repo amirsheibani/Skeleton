@@ -9,7 +9,7 @@ Future main() async {
   environment = ProdEnvironment(
     baseUrl: '',
     apiVersion: 'v1',
-    mapToken: '',
+    mapToken:  String.fromEnvironment('MAPBOX_TOKEN'),
     appId: 'HAMRAH_BANK_SHAHR',
     showRuntimeLog: false,
     showChucker: false,

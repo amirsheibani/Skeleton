@@ -13,7 +13,7 @@ Future main() async {
   environment = DevEnvironment(
     baseUrl: 'https://api.myip.com',
     apiVersion:'',
-    mapToken: '',
+    mapToken:  String.fromEnvironment('MAPBOX_TOKEN'),
     appId: 'SKELETON',
     showRuntimeLog: true,
     showChucker: true,

@@ -11,7 +11,7 @@ Future main() async {
   environment = StageEnvironment(
     baseUrl: '',
     apiVersion: 'v1',
-    mapToken: '',
+    mapToken: String.fromEnvironment('MAPBOX_TOKEN'),
     appId: 'HAMRAH_BANK_SHAHR',
     showRuntimeLog: true,
     showChucker: true,

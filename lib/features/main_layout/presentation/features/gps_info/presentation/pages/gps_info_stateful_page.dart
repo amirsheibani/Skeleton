@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:handler_framework/handler_framework.dart';
 import 'package:skeleton/core/di/base/di_setup.dart';
-import 'package:skeleton/core/handler/service/gps_service_handler.dart';
 
 class GPSInfoStatefulPage extends StatefulWidget {
   const GPSInfoStatefulPage({super.key});

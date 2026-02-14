@@ -2,10 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:handler_framework/handler_framework.dart';
 import 'package:skeleton/core/di/base/di_setup.dart';
-import 'package:skeleton/core/handler/service/car_slope_service.dart';
-import 'package:skeleton/core/handler/service/gps_service_handler.dart';
-import 'package:skeleton/core/handler/service/motion_service_handler.dart';
 
 class CarSlopeStatefulPage extends StatefulWidget {
   const CarSlopeStatefulPage({super.key});

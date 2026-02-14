@@ -1,0 +1,13 @@
+name: utils_framework
+description: Shared utility extensions for skeleton-based apps.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ^3.10.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  intl: ^0.20.2
+  persian_datetime_picker: ^3.1.1

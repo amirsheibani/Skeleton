@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 
-extension StringExtension on int {
+extension intExtension on int {
   bool toBool() {
     return this > 0;
   }

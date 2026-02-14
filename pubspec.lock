@@ -265,6 +265,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.2"
+  core_framework:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: a81c603cd8cc24c0a987b6d5d1ac42a73644bb4f
+      url: "https://github.com/amirsheibani/core_framework.git"
+    source: git
+    version: "0.1.0"
   cross_file:
     dependency: transitive
     description:
@@ -653,6 +662,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+  handler_framework:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: bb42dcab0aafb21c88acb2a58ec3243b70e2e801
+      url: "https://github.com/amirsheibani/handler_framework.git"
+    source: git
+    version: "0.1.0"
   hotreloader:
     dependency: transitive
     description:
@@ -1506,6 +1524,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.5"
+  utils_framework:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "05ffa1a8fa1a89aa623c36afef107efab264ba12"
+      url: "https://github.com/amirsheibani/utils_framework.git"
+    source: git
+    version: "0.1.0"
   uuid:
     dependency: transitive
     description:

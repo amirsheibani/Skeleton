@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:handler_framework/handler_framework.dart';
 import 'package:skeleton/core/di/base/di_setup.dart';
-import 'package:skeleton/core/handler/service/motion_service_handler.dart';
 
 class MotionInfoPage extends StatefulWidget {
   const MotionInfoPage({super.key});

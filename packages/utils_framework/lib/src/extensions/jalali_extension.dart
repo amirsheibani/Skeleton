@@ -1,6 +1,6 @@
 
 import 'package:persian_datetime_picker/persian_datetime_picker.dart';
-import 'package:skeleton/core/common/extension/int_extension.dart';
+import 'package:utils_framework/src/extensions/int_extension.dart';
 
 extension JalaliExt on Jalali {
   String get expDate {

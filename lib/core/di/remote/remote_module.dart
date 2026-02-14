@@ -2,13 +2,13 @@ import 'dart:developer' as dev;
 import 'dart:io';
 
 import 'package:chucker_flutter/chucker_flutter.dart';
+import 'package:core_framework/core_framework.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:injectable/injectable.dart';
 import 'package:skeleton/bootstrap.dart';
 import 'package:skeleton/core/di/remote/interceptor/custom_pretty_logger.dart';
 import 'package:skeleton/core/di/remote/interceptor/token_interceptor.dart';
-import 'package:skeleton/core/env/environment.dart';
 
 @module
 abstract class RemoteModule {
@@ -23,6 +23,16 @@ abstract class RemoteModule {
 
   @singleton
   Dio get dio => _getDio();
+
+  //final dio = getIt<Dio>(instanceName: "downloadFile");
+  @Named("downloadFile")
+  @lazySingleton
+  Dio get dioDownload => _getDioForDownload();
+
+  //final dio = getIt<Dio>(instanceName: "uploadFile");
+  @Named("uploadFile")
+  @lazySingleton
+  Dio get dioUpload => _getDioForUpload();
 
   _getDio() {
     var dio = Dio(BaseOptions(baseUrl: environment.url!));
@@ -46,6 +56,88 @@ abstract class RemoteModule {
     if(environment.showChucker ?? false){
       dio.interceptors.add(_chuckerDioInterceptor);
     }
+
+    late Duration connectTimeout;
+    late Duration receiveTimeout;
+    late Duration sendTimeout;
+
+    switch(environment){
+      case DevEnvironment():
+        connectTimeout = const Duration(seconds: 60);
+        receiveTimeout = const Duration(seconds: 60);
+        sendTimeout = const Duration(seconds: 60);
+      case StageEnvironment():
+        connectTimeout = const Duration(seconds: 20);
+        receiveTimeout = const Duration(seconds: 20);
+        sendTimeout = const Duration(seconds: 20);
+      case ProdEnvironment():
+        connectTimeout = const Duration(seconds: 20);
+        receiveTimeout = const Duration(seconds: 20);
+        sendTimeout = const Duration(seconds: 20);
+    }
+
+    dio.options.connectTimeout = connectTimeout;
+    dio.options.receiveTimeout = receiveTimeout;
+    dio.options.sendTimeout = sendTimeout;
+
+    return dio;
+  }
+
+  _getDioForDownload() {
+    var dio = Dio(BaseOptions(baseUrl: environment.url!));
+
+    final securityContext = SecurityContext.defaultContext;
+    if(sslCert.isNotEmpty){
+      securityContext.setTrustedCertificatesBytes(sslCert.codeUnits);
+    }
+
+
+    (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () {
+      HttpClient httpClient = HttpClient(context: securityContext);
+      return httpClient;
+    };
+
+
+    late Duration connectTimeout;
+    late Duration receiveTimeout;
+    late Duration sendTimeout;
+
+    switch(environment){
+      case DevEnvironment():
+        connectTimeout = const Duration(seconds: 60);
+        receiveTimeout = const Duration(seconds: 60);
+        sendTimeout = const Duration(seconds: 60);
+      case StageEnvironment():
+        connectTimeout = const Duration(seconds: 20);
+        receiveTimeout = const Duration(seconds: 20);
+        sendTimeout = const Duration(seconds: 20);
+      case ProdEnvironment():
+        connectTimeout = const Duration(seconds: 20);
+        receiveTimeout = const Duration(seconds: 20);
+        sendTimeout = const Duration(seconds: 20);
+    }
+
+    dio.options.connectTimeout = connectTimeout;
+    dio.options.receiveTimeout = receiveTimeout;
+    dio.options.sendTimeout = sendTimeout;
+
+    return dio;
+  }
+
+  _getDioForUpload() {
+    var dio = Dio(BaseOptions(baseUrl: environment.url!));
+
+    final securityContext = SecurityContext.defaultContext;
+    if(sslCert.isNotEmpty){
+      securityContext.setTrustedCertificatesBytes(sslCert.codeUnits);
+    }
+
+
+    (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () {
+      HttpClient httpClient = HttpClient(context: securityContext);
+      return httpClient;
+    };
+
 
     late Duration connectTimeout;
     late Duration receiveTimeout;

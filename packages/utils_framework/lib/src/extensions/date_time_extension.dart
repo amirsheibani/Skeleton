@@ -1,7 +1,8 @@
 import 'dart:math';
 import 'package:intl/intl.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart';
-import 'package:skeleton/core/common/extension/string_extension.dart';
+import 'jalali_extension.dart';
+import 'string_extension.dart';
 
 extension DateTimeExtension on DateTime {
 

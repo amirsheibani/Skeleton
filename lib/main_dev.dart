@@ -1,10 +1,10 @@
 import 'dart:async';
+import 'package:core_framework/core_framework.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skeleton/app/app.dart';
 import 'package:skeleton/bootstrap.dart';
-import 'package:skeleton/core/env/environment.dart';
 
 
 Future main() async {

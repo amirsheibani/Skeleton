@@ -2,9 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:skeleton/core/handler/service/car_slope_service.dart';
-import 'package:skeleton/core/handler/service/gps_service_handler.dart';
-import 'package:skeleton/core/handler/service/motion_service_handler.dart';
+import 'package:handler_framework/handler_framework.dart';
 import 'package:skeleton/features/main_layout/presentation/features/car_slope_info/presentation/manager/car_slope_provider.dart';
 import 'package:skeleton/features/main_layout/presentation/features/car_slope_info/presentation/manager/car_slope_state.dart';
 

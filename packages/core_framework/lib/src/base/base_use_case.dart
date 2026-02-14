@@ -1,5 +1,7 @@
 
-import 'package:skeleton/core/handler/base/pagination.dart';
+
+
+import 'pagination.dart';
 
 abstract class BaseUseCaseWithPagination<R, P> {
   Future<R> call(P arg, Pagination pagination);

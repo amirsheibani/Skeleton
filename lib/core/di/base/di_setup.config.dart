@@ -25,12 +25,6 @@ import '../../../features/main_layout/presentation/features/my_ip/domain/reposit
     as _i18;
 import '../../../features/main_layout/presentation/features/my_ip/domain/use_cases/my_ip_use_case.dart'
     as _i212;
-import '../../handler/service/car_slope_service.dart' as _i306;
-import '../../handler/service/gps_service_handler.dart' as _i417;
-import '../../handler/service/internet_service_handler.dart' as _i59;
-import '../../handler/service/motion_service_handler.dart' as _i125;
-import '../../handler/service/nfc_service_handler.dart' as _i361;
-import '../../handler/service/supabase_auth_service_handler.dart' as _i849;
 import '../local/device_info.dart' as _i510;
 import '../remote/interceptor/custom_pretty_logger.dart' as _i154;
 import '../remote/remote_module.dart' as _i707;
@@ -45,37 +39,18 @@ _i174.GetIt $initGetIt(
   final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
   final deviceModule = _$DeviceModule();
   final remoteModule = _$RemoteModule();
-  final gPSServiceModule = _$GPSServiceModule();
-  final internetServiceModule = _$InternetServiceModule();
-  final motionServiceModule = _$MotionServiceModule();
-  final nFCServiceModule = _$NFCServiceModule();
-  final authServiceModule = _$AuthServiceModule();
-  final carSlopeServiceModule = _$CarSlopeServiceModule();
   gh.singleton<_i937.ModeDetection>(() => _i937.ModeDetection());
   gh.singleton<_i510.DeviceInfo>(() => deviceModule.provideDeviceInfo());
   gh.singleton<_i154.CustomPrettyLogger>(() => remoteModule.prettyDioLogger);
   gh.singleton<_i361.Dio>(() => remoteModule.dio);
-  gh.lazySingleton<_i417.GPSService>(
-    () => gPSServiceModule.provideGPSService(),
-  );
-  gh.lazySingleton<_i59.InternetService>(
-    () => internetServiceModule.provideInternetService(),
-  );
-  gh.lazySingleton<_i125.MotionService>(
-    () => motionServiceModule.provideMotionService(),
-  );
-  gh.lazySingleton<_i361.NFCService>(
-    () => nFCServiceModule.provideNFCService(),
-  );
-  gh.lazySingleton<_i849.AuthService>(
-    () => authServiceModule.provideAuthService(),
+  gh.lazySingleton<_i361.Dio>(
+    () => remoteModule.dioUpload,
+    instanceName: 'uploadFile',
   );
   gh.lazySingleton<_i675.IpService>(() => _i675.IpService(gh<_i361.Dio>()));
-  gh.lazySingleton<_i306.CarSlopeService>(
-    () => carSlopeServiceModule.provideCarSlopeService(
-      gh<_i417.GPSService>(),
-      gh<_i125.MotionService>(),
-    ),
+  gh.lazySingleton<_i361.Dio>(
+    () => remoteModule.dioDownload,
+    instanceName: 'downloadFile',
   );
   gh.factory<_i947.IpDataSource>(
     () => _i151.IpDataSourceImpl(gh<_i675.IpService>()),
@@ -92,15 +67,3 @@ _i174.GetIt $initGetIt(
 class _$DeviceModule extends _i510.DeviceModule {}
 
 class _$RemoteModule extends _i707.RemoteModule {}
-
-class _$GPSServiceModule extends _i417.GPSServiceModule {}
-
-class _$InternetServiceModule extends _i59.InternetServiceModule {}
-
-class _$MotionServiceModule extends _i125.MotionServiceModule {}
-
-class _$NFCServiceModule extends _i361.NFCServiceModule {}
-
-class _$AuthServiceModule extends _i849.AuthServiceModule {}
-
-class _$CarSlopeServiceModule extends _i306.CarSlopeServiceModule {}

@@ -1,6 +1,5 @@
+import 'package:core_framework/core_framework.dart';
 import 'package:injectable/injectable.dart';
-import 'package:skeleton/core/common/extension/result_extension.dart';
-import 'package:skeleton/core/handler/base/result.dart';
 import 'package:skeleton/features/main_layout/presentation/features/my_ip/data/data_sources/ip_data_source.dart';
 import 'package:skeleton/features/main_layout/presentation/features/my_ip/data/mappers/ip_mapper.dart';
 import 'package:skeleton/features/main_layout/presentation/features/my_ip/domain/entities/ip_entity.dart';

@@ -12,6 +12,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  core_framework:
+    git:
+      url: https://github.com/amirsheibani/core_framework.git
+  handler_framework:
+    git:
+      url: https://github.com/amirsheibani/handler_framework.git
+  utils_framework:
+    git:
+      url: https://github.com/amirsheibani/utils_framework.git
+
   go_router: ^17.0.1
   flutter_riverpod: ^2.4.0
   cupertino_icons: ^1.0.8
@@ -40,6 +50,11 @@ dependencies:
   sensors_plus: ^5.0.0
   supabase_flutter: ^2.12.0
   dart_mapper_clean: ^0.2.4
+
+
+
+
+
 #  dart_mapper_clean:
 #    git:
 #      url: https://github.com/amirsheibani/dart_mapper.git

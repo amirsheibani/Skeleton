@@ -1,9 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:handler_framework/handler_framework.dart';
 import 'package:skeleton/core/di/base/di_setup.dart';
-import 'package:skeleton/core/handler/service/gps_service_handler.dart';
 import 'package:skeleton/features/main_layout/presentation/features/gps_info/presentation/manager/gps_state.dart';
 
 

@@ -1,4 +1,4 @@
-import 'package:skeleton/core/handler/service/car_slope_service.dart';
+import 'package:handler_framework/handler_framework.dart';
 
 base class CarSlopeState {
   const CarSlopeState();

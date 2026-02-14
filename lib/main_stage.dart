@@ -11,7 +11,7 @@ Future main() async {
   environment = StageEnvironment(
     baseUrl: '',
     apiVersion: 'v1',
-    mapToken: 'pk.eyJ1IjoiZHJlYWRlbHVzIiwiYSI6ImNrbzB4cXN0MjBrOTUybnA0bnltZTdtc2gifQ.wPSD6ScnaBT1sm9ii5bYFw',
+    mapToken: '',
     appId: 'HAMRAH_BANK_SHAHR',
     showRuntimeLog: true,
     showChucker: true,

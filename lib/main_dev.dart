@@ -13,7 +13,7 @@ Future main() async {
   environment = DevEnvironment(
     baseUrl: 'https://api.myip.com',
     apiVersion:'',
-    mapToken: 'pk.eyJ1IjoiZHJlYWRlbHVzIiwiYSI6ImNrbzB4cXN0MjBrOTUybnA0bnltZTdtc2gifQ.wPSD6ScnaBT1sm9ii5bYFw',
+    mapToken: '',
     appId: 'SKELETON',
     showRuntimeLog: true,
     showChucker: true,

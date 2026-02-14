@@ -16,7 +16,7 @@ class IpRepositoryImpl extends IpRepository {
   Future<Result<IpEntity>> getIp() async {
     try {
       final result = await _ipDataSource.getIp();
-      return Success(data: result.data.mapper(),message: result.message,meta: result.meta);
+      return Success(data: result.data != null ? IpMapperImpl().entityMapper(result.data!) : null ,message: result.message,meta: result.meta);
     } catch (e, stackTrace) {
       return e.toResult<IpEntity>(stackTrace);
     }

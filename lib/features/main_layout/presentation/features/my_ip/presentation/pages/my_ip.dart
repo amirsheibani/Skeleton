@@ -19,6 +19,7 @@ class _MyIpPageState extends ConsumerState<MyIpPage> {
 
   @override
   Widget build(BuildContext context) {
+
     final myIpState = ref.watch(myIpProvider);
     final theme = Theme.of(context);
 
@@ -30,7 +31,7 @@ class _MyIpPageState extends ConsumerState<MyIpPage> {
           MyIpSuccess(:final data) => Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
+                SelectableText(
                   data?.ip ?? '-',
                   style: theme.textTheme.headlineSmall,
                 ),

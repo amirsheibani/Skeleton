@@ -1,5 +1,5 @@
-// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// dart format width=80
 
 // **************************************************************************
 // InjectableConfigGenerator
@@ -45,30 +45,30 @@ _i174.GetIt $initGetIt(
   final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
   final deviceModule = _$DeviceModule();
   final remoteModule = _$RemoteModule();
-  final internetServiceModule = _$InternetServiceModule();
-  final authServiceModule = _$AuthServiceModule();
   final gPSServiceModule = _$GPSServiceModule();
+  final internetServiceModule = _$InternetServiceModule();
   final motionServiceModule = _$MotionServiceModule();
   final nFCServiceModule = _$NFCServiceModule();
+  final authServiceModule = _$AuthServiceModule();
   final carSlopeServiceModule = _$CarSlopeServiceModule();
-  gh.singleton<_i510.DeviceInfo>(() => deviceModule.provideDeviceInfo());
   gh.singleton<_i937.ModeDetection>(() => _i937.ModeDetection());
+  gh.singleton<_i510.DeviceInfo>(() => deviceModule.provideDeviceInfo());
   gh.singleton<_i154.CustomPrettyLogger>(() => remoteModule.prettyDioLogger);
   gh.singleton<_i361.Dio>(() => remoteModule.dio);
-  gh.lazySingleton<_i59.InternetService>(
-    () => internetServiceModule.provideInternetService(),
-  );
-  gh.lazySingleton<_i849.AuthService>(
-    () => authServiceModule.provideAuthService(),
-  );
   gh.lazySingleton<_i417.GPSService>(
     () => gPSServiceModule.provideGPSService(),
+  );
+  gh.lazySingleton<_i59.InternetService>(
+    () => internetServiceModule.provideInternetService(),
   );
   gh.lazySingleton<_i125.MotionService>(
     () => motionServiceModule.provideMotionService(),
   );
   gh.lazySingleton<_i361.NFCService>(
     () => nFCServiceModule.provideNFCService(),
+  );
+  gh.lazySingleton<_i849.AuthService>(
+    () => authServiceModule.provideAuthService(),
   );
   gh.lazySingleton<_i675.IpService>(() => _i675.IpService(gh<_i361.Dio>()));
   gh.lazySingleton<_i306.CarSlopeService>(
@@ -93,14 +93,14 @@ class _$DeviceModule extends _i510.DeviceModule {}
 
 class _$RemoteModule extends _i707.RemoteModule {}
 
-class _$InternetServiceModule extends _i59.InternetServiceModule {}
-
-class _$AuthServiceModule extends _i849.AuthServiceModule {}
-
 class _$GPSServiceModule extends _i417.GPSServiceModule {}
+
+class _$InternetServiceModule extends _i59.InternetServiceModule {}
 
 class _$MotionServiceModule extends _i125.MotionServiceModule {}
 
 class _$NFCServiceModule extends _i361.NFCServiceModule {}
+
+class _$AuthServiceModule extends _i849.AuthServiceModule {}
 
 class _$CarSlopeServiceModule extends _i306.CarSlopeServiceModule {}

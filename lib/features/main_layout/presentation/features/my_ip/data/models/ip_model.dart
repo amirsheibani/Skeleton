@@ -1,7 +1,9 @@
+
 final class IpModel{
   final String? ip;
   final String? country;
   final String? cc;
+
 
 
   IpModel({this.ip,this.country,this.cc});

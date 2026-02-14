@@ -17,7 +17,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   pretty_dio_logger: ^1.4.0
   dio: ^5.9.0
-  retrofit: ^4.7.2
+  retrofit: ^4.9.2
   chucker_flutter: ^1.8.5
   flutter_map: ^8.2.1
   permission_handler: ^12.0.1
@@ -39,13 +39,22 @@ dependencies:
 #  app_links: ^7.0.0
   sensors_plus: ^5.0.0
   supabase_flutter: ^2.12.0
+  dart_mapper_clean: ^0.2.4
+#  dart_mapper_clean:
+#    git:
+#      url: https://github.com/amirsheibani/dart_mapper.git
+
+dependency_overrides:
+  dart_mappable: 3.3.0
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
-  build_runner: ^2.4.9
-  retrofit_generator: ^9.1.9
+  build_runner: ^2.11.0
+#  build_runner: ^2.4.13
+  retrofit_generator: ^10.2.1
   injectable_generator: ^2.7.0
 
 # The following section is specific to Flutter packages.

@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:handler_framework/handler_framework.dart';
+import 'package:framework_base/packages/framework_handler/lib/handler_framework.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:skeleton/core/di/base/di_setup.dart';
 import 'package:skeleton/features/auth_layout/presentation/features/login/presentation/manager/login_state.dart';

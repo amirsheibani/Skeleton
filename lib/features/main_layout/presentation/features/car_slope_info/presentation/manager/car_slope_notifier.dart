@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:framework_base/packages/framework_handler/lib/handler_framework.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:handler_framework/handler_framework.dart';
 import 'package:skeleton/core/di/base/di_setup.dart';
 import 'package:skeleton/features/main_layout/presentation/features/car_slope_info/presentation/manager/car_slope_state.dart';
 

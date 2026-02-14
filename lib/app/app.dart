@@ -3,7 +3,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:handler_framework/handler_framework.dart';
+import 'package:framework_base/packages/framework_handler/lib/handler_framework.dart';
 import 'package:skeleton/app/app_lifecycle_widget.dart';
 import 'package:skeleton/app/router.dart';
 import 'package:skeleton/core/config/locale_configs.dart';

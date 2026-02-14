@@ -1,6 +1,6 @@
-import 'package:core_framework/core_framework.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:framework_base/packages/framework_core/lib/core_framework.dart';
 import 'package:skeleton/app/app.dart';
 import 'package:skeleton/bootstrap.dart';
 

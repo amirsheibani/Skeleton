@@ -12,15 +12,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  core_framework:
+  framework_base:
     git:
-      url: https://github.com/amirsheibani/core_framework.git
-  handler_framework:
-    git:
-      url: https://github.com/amirsheibani/handler_framework.git
-  utils_framework:
-    git:
-      url: https://github.com/amirsheibani/utils_framework.git
+      url: https://github.com/amirsheibani/framework_base.git
 
   go_router: ^17.0.1
   flutter_riverpod: ^2.4.0

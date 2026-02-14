@@ -2,9 +2,9 @@ import 'dart:developer' as dev;
 import 'dart:io';
 
 import 'package:chucker_flutter/chucker_flutter.dart';
-import 'package:core_framework/core_framework.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
+import 'package:framework_base/packages/framework_core/lib/core_framework.dart';
 import 'package:injectable/injectable.dart';
 import 'package:skeleton/bootstrap.dart';
 import 'package:skeleton/core/di/remote/interceptor/custom_pretty_logger.dart';

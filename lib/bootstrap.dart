@@ -1,8 +1,8 @@
 import 'package:chucker_flutter/chucker_flutter.dart';
-import 'package:core_framework/core_framework.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:framework_base/packages/framework_core/lib/core_framework.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:skeleton/core/di/base/di_setup.dart';
 import 'package:skeleton/core/di/local/device_info.dart';

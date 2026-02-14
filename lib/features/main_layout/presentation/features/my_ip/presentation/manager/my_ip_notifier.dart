@@ -1,5 +1,5 @@
-import 'package:core_framework/core_framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:framework_base/packages/framework_core/lib/core_framework.dart';
 import 'package:skeleton/core/di/base/di_setup.dart';
 import 'package:skeleton/features/main_layout/presentation/features/my_ip/domain/entities/ip_entity.dart';
 import 'package:skeleton/features/main_layout/presentation/features/my_ip/domain/use_cases/my_ip_use_case.dart';

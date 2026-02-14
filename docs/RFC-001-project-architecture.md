@@ -1,3 +1,110 @@
+# RFC-001: Project Architecture and Conventions
+
+**Status:** Draft  
+**Date:** 2025  
+**Author:** Project Team
+
+---
+
+## Summary
+
+This RFC defines the architecture, layering, dependency rules, and naming conventions for the Flutter project Skeleton so that all features and future changes follow a single, consistent framework.
+
+---
+
+## Context and Motivation
+
+- The project is a multi-flavor (dev / stage / prod) skeleton with authentication and Android Kiosk support.
+- We need a feature-first, scalable, and testable structure without locking into a single framework (e.g. GetX or Bloc only).
+- A written reference is needed for adding new features (e.g. my_ip), new services, and major changes so that discussion and decisions are clear.
+
+---
+
+## Scope
+
+- Folder and layer structure under `lib/`.
+- Clean Architecture rules and dependency direction between layers.
+- Naming conventions (files, classes, folders, state).
+- Role of `core`, `app`, and `features`.
+- How to propose and record major changes (via future RFCs).
+
+---
+
+## Decisions
+
+### 1. Overall structure
+
+- **app:** App shell and routing only (go_router). No business logic.
+- **core:** Shared code (DI, theme, handlers, extensions, config, env). No feature-specific code.
+- **features:** One folder per feature; may be nested under a layout (e.g. main_layout).
+- **App entry:** `main_dev.dart`, `main_stage.dart`, `main_prod.dart` set `Environment`, then run `bootstrap` and `runApp`.
+
+### 2. Per-feature layering (Clean Architecture)
+
+- **domain (optional):** Entities and repository contracts; no dependency on Flutter or any framework.
+- **data (optional):** Repository implementations, datasources, DTOs and mappers to entities.
+- **presentation:** Always; includes manager (state), pages, and optionally widgets.
+
+Dependencies point inward only: `presentation` → `domain` ← `data`. No layer depends on an outer layer.
+
+### 3. Dependency rules
+
+- Features do not import each other directly; sharing is via core or explicit dependencies (documented in an RFC when needed).
+- Managers obtain services from DI (GetIt), not from `BuildContext`.
+- Core does not depend on any feature.
+
+### 4. Naming
+
+- Files: `snake_case.dart`.
+- Classes/types: `PascalCase`.
+- Variables/functions/parameters: `camelCase`.
+- Feature folders: `snake_case`.
+- Full-screen pages: suffix `_page`; reusable widgets: `_widget`; state/notifier: `_state`, `_notifier`, `_provider`.
+
+### 5. Current tooling (replaceable via separate RFC)
+
+- State: Riverpod  
+- Routing: go_router  
+- DI: get_it + injectable  
+- Network: Dio + Retrofit  
+- Sample auth: Supabase  
+- L10n: flutter_intl (ARB)
+
+Architecture is not tied to a single framework; swapping state or auth is allowed via RFC with limited changes in the relevant layers.
+
+### 6. Kiosk (Android)
+
+- Device Owner and Kiosk setup are documented separately (e.g. KIOSK_SETUP.md).
+- Admin component: `top.amirdeveloper.skeleton.KioskDeviceAdminReceiver`; set-device-owner format per flavor is in that document.
+
+---
+
+## Reference example: my_ip feature
+
+- **domain:** Entity such as `MyIpInfo`, contract `GetMyIpRepository`.
+- **data:** DTO model (e.g. `IpModel`), datasource, repository implementation, and mapper to entity.
+- **presentation:** `MyIpPage`, `MyIpNotifier`/`MyIpState`; use only the injected repository.
+
+Folder structure and file names follow the layering and naming sections of this RFC.
+
+---
+
+## Future RFCs
+
+- Breaking changes to architecture or conventions must be proposed in a new RFC and applied after agreement.
+- Each RFC has a number, title, and status (Draft / Accepted / Deprecated).
+
+---
+
+## References
+
+- Project README (structure, Clean, layering, naming).
+- KIOSK_SETUP.md for Kiosk setup.
+
+---
+
+<div dir="rtl">
+
 # RFC-001: معماری و قوانین پروژه Skeleton
 
 **وضعیت:** پیشنهاد (Draft)  
@@ -100,3 +207,5 @@
 
 - README پروژه (ساختار، Clean، لایه‌بندی، نام‌گذاری).
 - KIOSK_SETUP.md برای تنظیمات کیوسک.
+
+</div>
